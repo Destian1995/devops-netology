@@ -40,14 +40,16 @@
 Установить на личный компьютер:
 
 VirtualBox
+---
 https://ibb.co/6Z8QPJQ
 
 Vagrant
+---
 PS C:\Program Files\PowerShell\7> vagrant  -v
 Vagrant 2.2.19
 
 Ansible
-
+---
 root@vagrant:/home/vagrant# ansible --version
 ansible 2.9.6
 
