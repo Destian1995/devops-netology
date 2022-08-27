@@ -56,31 +56,55 @@ Docker будет удобнее для кластериации, у конте�
 Запуск контейнеров:
 
 Загрузил контейнеры
+
 docker run -it --rm -d --name centos -v $(pwd)/data:/data centos:latest
+
 docker run -it --rm -d --name debian -v $(pwd)/data:/data debian:stable
 
 vagrant@vagrant:~$ sudo docker images
+
 REPOSITORY         TAG       IMAGE ID       CREATED         SIZE
+
 debian             stable    f70ab914d71a   4 days ago      124MB
+
 centos             latest    5d0da3dc9764   11 months ago   231MB
+
 
 1 - Файл Centos
 
 vagrant@vagrant:~$ sudo docker exec -it centos bash
+
 [root@00938d243e01 /]# echo "Hello Netology from CentOS!" > /data/centos.txt
+
 [root@00938d243e01 /]# exit
+
 exit
 
+
 2 - Файл с хоста
+
+
 root@vagrant:/home/vagrant# echo "Hellow Netology from Host!" > data/host.txt
 
 
 3 - Файлы в директории /data в контейнере с Debian
+
+
+
 vagrant@vagrant:~$ sudo docker exec -it debian bash
+
+
 root@b9e943ea973a:/# ls -l /data/
+
+
 total 8
+
+
 -rw-r--r-- 1 root root 28 Aug 27 14:32 centos.txt
+
+
 -rw-r--r-- 1 root root 27 Aug 27 14:35 host.txt
+
 
 ## Задача 4 (*)
 
