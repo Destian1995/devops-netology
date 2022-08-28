@@ -114,6 +114,7 @@ total 8
 Ссылка: 
 
 
+https://hub.docker.com/r/destian1995/ansible/tags
 
 
 
