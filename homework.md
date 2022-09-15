@@ -159,5 +159,6 @@ explain verbose и explain analyze verbose - для каждой операци�
 
 ![Задание 6](https://user-images.githubusercontent.com/106807250/190345274-9da57f18-41db-4d7d-b35b-6f1d40522c6a.jpg)
 ![Задание 6 1](https://user-images.githubusercontent.com/106807250/190345307-e83b5fe5-d3b3-41f7-955c-676cf081f3c9.jpg)
+![2022-09-15_114558](https://user-images.githubusercontent.com/106807250/190345974-1d9ebb39-3f52-4b34-aeca-086e21292eb8.jpg)
 
 
