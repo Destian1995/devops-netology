@@ -8,6 +8,9 @@
 Приведите получившуюся команду или docker-compose манифест.
 
 docker-compose.yml:
+![1 2](https://user-images.githubusercontent.com/106807250/190342289-6599eb1a-f97a-423b-9ec2-59258decf570.jpg)
+команда:
+![Задание 1](https://user-images.githubusercontent.com/106807250/190342342-ca0adf53-d5e2-4ef6-b48f-4745bb3fd915.jpg)
 
 
 
@@ -23,23 +26,21 @@ docker-compose.yml:
 предоставьте пользователю test-simple-user права на SELECT/INSERT/UPDATE/DELETE данных таблиц БД test_db
 Таблица orders:
 
-*id (serial primary key)
-*наименование (string)
-*цена (integer)
-
+id (serial primary key)
+наименование (string)
+цена (integer)
 Таблица clients:
 
-*id (serial primary key)
-*фамилия (string)
-*страна проживания (string, index)
-*заказ (foreign key orders)
-
+id (serial primary key)
+фамилия (string)
+страна проживания (string, index)
+заказ (foreign key orders)
 Приведите:
 
-*итоговый список БД после выполнения пунктов выше,
-*описание таблиц (describe)
-*SQL-запрос для выдачи списка пользователей с правами над таблицами test_db
-*список пользователей с правами над таблицами test_db
+итоговый список БД после выполнения пунктов выше,
+описание таблиц (describe)
+SQL-запрос для выдачи списка пользователей с правами над таблицами test_db
+список пользователей с правами над таблицами test_db
 
 
 ##  Задача 3
