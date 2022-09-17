@@ -173,8 +173,11 @@ SELECT table_schema,table_name,engine FROM information_schema.tables WHERE table
 1 row in set (0.00 sec)
 ```
 
-
+Измените engine и приведите время выполнения и запрос на изменения из профайлера в ответе:
 ---
+- на MyISAM
+- на InnoDB
+
 ```
 mysql> set profiling = 1;
 Query OK, 0 rows affected, 1 warning (0.00 sec)
