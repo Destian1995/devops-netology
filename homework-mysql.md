@@ -6,7 +6,7 @@
 ```
 docker run --rm --name mysql-docker \
     -e MYSQL_DATABASE=test_db \
-    -e MYSQL_ROOT_PASSWORD=netology \
+    -e MYSQL_ROOT_PASSWORD=devops \
     -v $PWD/backup:/media/mysql/backup \
     -v my_data:/var/lib/mysql \
     -v $PWD/config/conf.d:/etc/mysql/conf.d \
@@ -240,6 +240,7 @@ bash-4.4# cat my.cnf
 # https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_default_authentication_plugin
 # default-authentication-plugin=mysql_native_password
 
+<<<<<<< HEAD
 [mysqld]
 pid-file        = /var/run/mysqld/mysqld.pid
 socket          = /var/run/mysqld/mysqld.sock
@@ -258,3 +259,6 @@ innodb_log_file_size = 100M
 
 bash-4.4#
 ```
+=======
+## Задача 4 
+>>>>>>> 8388c0f9892333ad6fcb62d3c15826b99075e766
