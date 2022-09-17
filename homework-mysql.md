@@ -252,7 +252,6 @@ bash-4.4# cat my.cnf
 # https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_default_authentication_plugin
 # default-authentication-plugin=mysql_native_password
 
-<<<<<<< HEAD
 [mysqld]
 pid-file        = /var/run/mysqld/mysqld.pid
 socket          = /var/run/mysqld/mysqld.sock
