@@ -33,7 +33,7 @@ Type "help" for help.
 postgres=#
 ```
 
-Воспользуйтесь командой \? для вывода подсказки по имеющимся в psql управляющим командам.
+Воспользуйтесь командой ```\?``` для вывода подсказки по имеющимся в psql управляющим командам.
 
 Найдите и приведите управляющие команды для:
 
@@ -393,10 +393,87 @@ test_database=#
 
 
 ## Задача 3
+Архитектор и администратор БД выяснили, что ваша таблица orders разрослась до невиданных размеров и
+поиск по ней занимает долгое время. Вам, как успешному выпускнику курсов DevOps в нетологии предложили
+провести разбиение таблицы на 2 (шардировать на orders_1 - price>499 и orders_2 - price<=499).
+
+Предложите SQL-транзакцию для проведения данной операции.
+
+Здесь я решил использовать вариант проверки по целевому атрибуту с наследованием основной таблицы(orders)
+По сути при создании таблиц были одновременно созданы правила фильтрации данных в них.
+
+```
+test_database=# CREATE TABLE orders_499_and_more (CHECK (price > 499)) INHERITS(orders);
+CREATE TABLE
+test_database=# INSERT INTO orders_499_and_more SELECT * FROM orders WHERE price > 499;
+INSERT 0 3
+test_database=# CREATE TABLE orders_499_and_less (CHECK (price <= 499)) INHERITS(orders);
+CREATE TABLE
+test_database=# INSERT INTO orders_499_and_less SELECT * FROM orders WHERE price <= 499;
+INSERT 0 5
+test_database=# \dt
+                List of relations
+ Schema |        Name         | Type  |  Owner
+--------+---------------------+-------+----------
+ public | orders              | table | postgres
+ public | orders_499_and_less | table | postgres
+ public | orders_499_and_more | table | postgres
+(3 rows)
+
+test_database=# select * from orders_499_and_less;
+ id |        title         | price
+----+----------------------+-------
+  1 | War and peace        |   100
+  3 | Adventure psql time  |   300
+  4 | Server gravity falls |   300
+  5 | Log gossips          |   123
+  7 | Me and my bash-pet   |   499
+(5 rows)
+
+test_database=# select * from orders_499_and_more;
+ id |       title        | price
+----+--------------------+-------
+  2 | My little database |   500
+  6 | WAL never lies     |   900
+  8 | Dbiezdmin          |   501
+(3 rows)
+
+test_database=#
 
 
+```
 
+Можно ли было изначально исключить "ручное" разбиение при проектировании таблицы orders?
 
+Да, прописав правила вставки, например:
 
+```
+CREATE RULE orders_insert_to_more AS ON INSERT TO orders WHERE ( price > 499 ) DO INSTEAD INSERT INTO orders_499_and_more VALUES (NEW.*);
+CREATE RULE orders_insert_to_less AS ON INSERT TO orders WHERE ( price <= 499 ) DO INSTEAD INSERT INTO orders_499_and_less VALUES (NEW.*);
+```
 
 ## Задача 4
+
+Используя утилиту `pg_dump` создайте бекап БД `test_database`.
+
+```
+root@c8655631ad61:/# export PGPASSWORD=netology && pg_dump -h localhost -U postgres test_database > /tmp/test_database_backup.sql
+root@c8655631ad61:/# cd tmp
+root@c8655631ad61:/tmp# ls -l
+total 12
+-rw-r--r-- 1 root root 5553 Sep 27 15:58 test_database_backup.sql
+-rw-rw-r-- 1 1000 1000 2085 Sep 26 16:48 test_dump.sql
+root@c8655631ad61:/tmp#
+```
+
+Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца `title` для таблиц `test_database`?
+
+Можно попробовать использовать Unique Constraints
+Можно добавить UNIQUE с помощью ADD CONSTRAINT:
+
+```
+ALTER TABLE orders_499_and_less ADD CONSTRAINT orders_499_and_less_title_unique UNIQUE (title);
+ALTER TABLE orders_499_and_more ADD CONSTRAINT orders_499_and_more_title_unique UNIQUE (title);
+```
+
+Кстати, при удалении ограничения целостности UNIQUE удаляется и индекс.
