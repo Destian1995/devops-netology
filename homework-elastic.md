@@ -54,15 +54,10 @@ CMD ["sh", "-c", "${ES_HOME}/bin/elasticsearch"]
 
 ```
 sudo docker build . -t destian1995/elasticsearch
-```
-
-```
-sudo docker login -u Destian1995 -p Destian17 docker.io
-```
-
-```
+sudo docker login -u destian1995 -p Destian17 docker.io
 sudo docker push destian1995/elasticsearch:8.4.2
 ```
+
 
 - ссылку на образ в репозитории dockerhub
 https://hub.docker.com/repository/docker/destian1995/elasticsearch
