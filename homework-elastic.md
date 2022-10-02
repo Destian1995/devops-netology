@@ -22,29 +22,9 @@
 - текст Dockerfile манифеста
 
 ```
-FROM centos:7
-
+FROM docker.elastic.co/elasticsearch/elasticsearch:7.17.6@sha256:af43249cab60c8069a7868517b5c9d0f6481c6a1ac00e8ec3fa3ae614fb99e63
 EXPOSE 9200 9300
-
-USER 0
-
-RUN export ES_HOME="/var/lib/elasticsearch" && \
-    yum -y install wget && \
-	wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.4.2-linux-x86_64.tar.gz && \
-    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.4.2-linux-x86_64.tar.gz.sha512 && \
-    sha512 -c elasticsearch-8.4.2-linux-x86_64.tar.gz.sha512  && \
-    tar -xzf elasticsearch-8.4.2-linux-x86_64.tar.gz && \
-	rm -f elasticsearch-8.4.2-linux-x86_64.tar.gz* && \
-    mv elasticsearch-8.4.2 ${ES_HOME} && \
-    useradd -m -u dest elasticsearch && \
-    chown elasticsearch:elasticsearch -R ${ES_HOME} && \
-    yum -y remove wget && \
-    yum clean all
-
-COPY --chown=elasticsearch:elasticsearch config/* /var/lib/elasticsearch/config/
-    
-USER dest
-
+RUN export ES_HOME="/var/lib/elasticsearch" 
 ENV ES_HOME="/var/lib/elasticsearch" \
     ES_PATH_CONF="/var/lib/elasticsearch/config"
 WORKDIR ${ES_HOME}
@@ -53,9 +33,9 @@ CMD ["sh", "-c", "${ES_HOME}/bin/elasticsearch"]
 ```
 
 ```
-sudo docker build . -t destian1995/elasticsearch
+sudo docker build . -t destian1995/elasticsearch:7.17
 sudo docker login -u destian1995 -p Destian17 docker.io
-sudo docker push destian1995/elasticsearch:8.4.2
+sudo docker push destian1995/elasticsearch:7.17
 ```
 
 
@@ -66,11 +46,12 @@ https://hub.docker.com/repository/docker/destian1995/elasticsearch
 - ответ `elasticsearch` на запрос пути `/` в json виде
 
 ```
-docker run --rm -d --name elastic -p 9200:9200 -p 9300:9300 destian1995/elasticsearch:8.4.2
-```
-```
-sudo docker ps
-
+vagrant@vagrant:~$ sudo docker run --rm -d --name elasticsearch -p 9200:9200 -p 9300:9300 destian1995/elasticsearch
+ff218669e5973587a1d9b4bab395019bd084510b3811c1fd8a0d01b9bdbbf9b2
+vagrant@vagrant:~$ sudo docker ps
+CONTAINER ID   IMAGE                       COMMAND                  CREATED         STATUS         PORTS                                                                                  NAMES
+ff218669e597   destian1995/elasticsearch   "/bin/tini -- /usr/l…"   7 seconds ago   Up 7 seconds   0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 0.0.0.0:9300->9300/tcp, :::9300->9300/tcp   elastic
+vagrant@vagrant:~$
 ```
 
 ```
