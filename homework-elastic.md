@@ -7,8 +7,7 @@
 - первоначальном конфигурировании elastcisearch
 - запуске elasticsearch в docker
 
-Используя докер образ [centos:7](https://hub.docker.com/_/centos) как базовый и 
-[документацию по установке и запуску Elastcisearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/targz.html):
+Используя докер образ elasticsearch:7 как базовый:
 
 - составьте Dockerfile-манифест для elasticsearch
 - соберите docker-образ и сделайте `push` в ваш docker.io репозиторий
@@ -22,14 +21,9 @@
 - текст Dockerfile манифеста
 
 ```
-FROM docker.elastic.co/elasticsearch/elasticsearch:7.17.6@sha256:af43249cab60c8069a7868517b5c9d0f6481c6a1ac00e8ec3fa3ae614fb99e63
+FROM elasticsearch:7.17.6
+COPY elasticsearch.yml /var/lib/elasticsearch/config
 EXPOSE 9200 9300
-RUN export ES_HOME="/var/lib/elasticsearch" 
-ENV ES_HOME="/var/lib/elasticsearch" \
-    ES_PATH_CONF="/var/lib/elasticsearch/config"
-WORKDIR ${ES_HOME}
-
-CMD ["sh", "-c", "${ES_HOME}/bin/elasticsearch"]
 ```
 
 ```
@@ -46,32 +40,16 @@ https://hub.docker.com/repository/docker/destian1995/elasticsearch
 - ответ `elasticsearch` на запрос пути `/` в json виде
 
 ```
-vagrant@vagrant:~$ sudo docker run --rm -d --name elasticsearch -p 9200:9200 -p 9300:9300 destian1995/elasticsearch
-ff218669e5973587a1d9b4bab395019bd084510b3811c1fd8a0d01b9bdbbf9b2
+vagrant@vagrant:~$ sudo docker run -it --rm -d --name elasticsearch -p 9200:9200 -p 9300:9300 destian1995/elasticsearch:7.17
+3e921bb9ccf530cec35a9e12d327e9b021275562788715a39b4617ae3a7ebc87
 vagrant@vagrant:~$ sudo docker ps
-CONTAINER ID   IMAGE                       COMMAND                  CREATED         STATUS         PORTS                                                                                  NAMES
-ff218669e597   destian1995/elasticsearch   "/bin/tini -- /usr/l…"   7 seconds ago   Up 7 seconds   0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 0.0.0.0:9300->9300/tcp, :::9300->9300/tcp   elastic
-vagrant@vagrant:~$
+CONTAINER ID   IMAGE                            COMMAND                  CREATED         STATUS         PORTS                                                                                  NAMES
+3e921bb9ccf5   destian1995/elasticsearch:7.17   "/bin/tini -- /usr/l…"   5 seconds ago   Up 4 seconds   0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 0.0.0.0:9300->9300/tcp, :::9300->9300/tcp   elasticsearch
+vagrant@vagrant:~$ sudo curl -X GET 'localhost:9200/'
 ```
 
 ```
-{
-  "name" : "netology_test",
-  "cluster_name" : "elasticsearch",
-  "cluster_uuid" : "AT69_T_DTp-1qgIJlatQqA",
-  "version" : {
-    "number" : "8.4.2",
-    "build_type" : "tar",
-    "build_hash" : "f27399d",
-    "build_flavor" : "default",
-    "build_date" : "2016-03-30T09:51:41.449Z",
-    "build_snapshot" : false,
-    "lucene_version" : "9.3.0",
-    "minimum_wire_compatibility_version" : "1.2.3",
-    "minimum_index_compatibility_version" : "1.2.3"
-  },
-  "tagline" : "You Know, for Search"
-}
+
 ```
 
 Подсказки:
