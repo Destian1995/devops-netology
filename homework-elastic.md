@@ -27,8 +27,7 @@ http.port: 9200
 
 
 ```
-FROM docker.elastic.co/elasticsearch/elasticsearch:7.17.6
-RUN yum install java-11-openjdk-devel -y 
+FROM docker.elastic.co/elasticsearch/elasticsearch:7.17.6 
 COPY elasticsearch.yml /var/lib/elasticsearch/config
 WORKDIR /var/lib/elasticsearch/
 EXPOSE 9200 9300
