@@ -21,7 +21,7 @@
 - текст Dockerfile манифеста
 
 ```
-FROM elasticsearch:7.17.6
+FROM docker.elastic.co/elasticsearch/elasticsearch:7.17.6
 RUN yum install java-11-openjdk-devel -y 
 COPY elasticsearch.yml /var/lib/elasticsearch/config
 WORKDIR /var/lib/elasticsearch/
