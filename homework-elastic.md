@@ -17,8 +17,14 @@
 - данные `path` должны сохраняться в `/var/lib`
 - имя ноды должно быть `netology_test`
 
+```
+cluster.name: "netology_test"
+network.host: 000.000.000
+http.port: 9200
+```
 В ответе приведите:
 - текст Dockerfile манифеста
+
 
 ```
 FROM docker.elastic.co/elasticsearch/elasticsearch:7.17.6
