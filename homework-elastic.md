@@ -19,7 +19,7 @@
 
 ```
 cluster.name: "netology_test"
-network.host: 000.000.000
+network.host: 0.0.0.0
 http.port: 9200
 ```
 В ответе приведите:
