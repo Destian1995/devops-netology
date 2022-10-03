@@ -18,21 +18,26 @@
 - имя ноды должно быть `netology_test`
 
 ```
-cluster.name: "netology_test"
-network.host: 0.0.0.0
+node.name: netology_test
+path.data: /var/lib/elasticsearch/data
+path.logs: /var/lib/elasticsearch/logs
+http.host: 0.0.0.0
+network.host: 127.0.0.1
 http.port: 9200
+path.repo: /var/lib/elasticsearch/snapshots
 ```
 В ответе приведите:
 - текст Dockerfile манифеста
 
 
 ```
-FROM docker.elastic.co/elasticsearch/elasticsearch:7.17.6 
-COPY elasticsearch.yml /var/lib/elasticsearch/config
-WORKDIR /var/lib/elasticsearch/
+FROM docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+COPY elasticsearch.yml /var/lib/elasticsearch/config/
 EXPOSE 9200 9300
 
-CMD ["elasticsearch"]
+WORKDIR /var/lib/elasticsearch/
+
+CMD ["sh", "-c", "/var/lib/elasticsearch/bin/elasticsearch"]
 ```
 
 ```
