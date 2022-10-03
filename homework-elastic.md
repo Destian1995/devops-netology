@@ -23,7 +23,10 @@
 ```
 FROM elasticsearch:7.17.6
 COPY elasticsearch.yml /var/lib/elasticsearch/config
+WORKDIR /var/lib/elasticsearch/
 EXPOSE 9200 9300
+
+CMD ["elasticsearch"]
 ```
 
 ```
