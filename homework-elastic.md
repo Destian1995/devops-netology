@@ -16,15 +16,17 @@
 Требования к `elasticsearch.yml`:
 - данные `path` должны сохраняться в `/var/lib`
 - имя ноды должно быть `netology_test`
-
+elasticsearch.yml:
 ```
+cluster.name: netology_test
 node.name: netology_test
+bootstrap.memory_lock: true
+network.host: 127.0.0.1
+network.publish_host: localhost
 path.data: /var/lib/elasticsearch/data
 path.logs: /var/lib/elasticsearch/logs
-http.host: 0.0.0.0
-network.host: 127.0.0.1
-http.port: 9200
 path.repo: /var/lib/elasticsearch/snapshots
+http.port: 9200-9300
 ```
 В ответе приведите:
 - текст Dockerfile манифеста
@@ -32,12 +34,19 @@ path.repo: /var/lib/elasticsearch/snapshots
 
 ```
 FROM docker.elastic.co/elasticsearch/elasticsearch:7.17.6
-COPY elasticsearch.yml /var/lib/elasticsearch/config/
-EXPOSE 9200 9300
+RUN apt-get update && apt-get install wget build-essential gcc make -y
+RUN apt-get install common-software-properties  -y
+#Install_JAVA
+RUN apt-get install default-jdk -y
+RUN apt-get install openjdk-8-jre -y
+RUN apt-get update
+RUN wget -O - https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add -
+RUN echo  "deb  http://packages.elastic.co/elasticsearch/2.x/debian stable main" | tee -a /etc/apt/sources.list.d/elasticsearch-2.x.list
+RUN apt-get update &&  apt-get install elasticsearch -y
+RUN apt-get install git -y
+RUN apt-get install python2.7 -y
+RUN apt-get install vim  -y
 
-WORKDIR /var/lib/elasticsearch/
-
-CMD ["sh", "-c", "/var/lib/elasticsearch/bin/elasticsearch"]
 ```
 
 ```
