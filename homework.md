@@ -14,7 +14,12 @@ docker-compose.yml:
 ---
 ![Задание 1](https://user-images.githubusercontent.com/106807250/190342342-ca0adf53-d5e2-4ef6-b48f-4745bb3fd915.jpg)
 
-
+wget http://mirror.centos.org/centos/6/os/x86_64/Packages/rpm-4.8.0-47.el6.x86_64.rpm && \
+wget http://mirror.centos.org/centos/6/os/x86_64/Packages/rpm-libs-4.8.0-47.el6.x86_64.rpm  && \
+wget http://mirror.centos.org/centos/6/os/x86_64/Packages/rpm-python-4.8.0-47.el6.x86_64.rpm && \
+wget http://mirror.centos.org/centos/6/os/x86_64/Packages/yum-3.2.29-69.el6.centos.noarch.rpm && \
+wget http://mirror.centos.org/centos/6/os/x86_64/Packages/yum-metadata-parser-1.1.2-16.el6.x86_64.rpm && \
+wget http://mirror.centos.org/centos/6/os/x86_64/Packages/yum-plugin-fastestmirror-1.1.30-30.el6.noarch.rpm && \
 
 
 ##  Задача 2
