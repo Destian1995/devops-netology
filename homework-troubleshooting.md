@@ -140,10 +140,9 @@ maintenance_work_mem
 
 # nano postgresql.conf
 
-shared_buffers = 1GB
-checkpoint_segments = 16
-effective_cache_size = 512MB
-work_mem = 8MB
-maintenance_work_mem = 256MB
+shared_buffers = 2GB                    # ~ 1/8 RAM and for Linux kernel.shmmax=4294967296 (1/4 of RAM)
+work_mem = 128MB                        # ~ 1/20 RAM
+maintenance_work_mem = 1GB              # ~ 1/4 RAM
+effective_cache_size = 4GB              # ~ 2/3 RAM
 ```
 ---
