@@ -7,12 +7,9 @@ terraform {
   }
     backend "s3" {
     endpoint   = "storage.yandexcloud.net"
-    bucket     = "devops"
+    bucket     = "Devops"
     region     = "ru-central1"
-    key        = "terraform.tfstate"
-    access_key = ""
-    secret_key = ""
-	
+    key        = "devops-netology/terraform-basic/terraform.tfstate"
     skip_region_validation      = true
     skip_credentials_validation = true
   }
