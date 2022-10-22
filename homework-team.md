@@ -36,9 +36,9 @@
 
 1. В [каталоге модулей](https://registry.terraform.io/browse/modules) найдите официальный модуль от aws для создания
 `ec2` инстансов. 
-```
+
 https://registry.terraform.io/modules/terraform-aws-modules/ec2-instance/aws/latest
-```
+
 
 2. Изучите как устроен модуль. Задумайтесь, будете ли в своем проекте использовать этот модуль или непосредственно 
 ресурс `aws_instance` без помощи модуля?
@@ -46,7 +46,8 @@ https://registry.terraform.io/modules/terraform-aws-modules/ec2-instance/aws/lat
 Создайте аналогичный инстанс при помощи найденного модуля.   
 
 В качестве результата задания приложите ссылку на созданный блок конфигураций. 
-```
+
+
 https://github.com/Destian1995/devops-netology/tree/main/terraform-instances
-```
+
 ---
