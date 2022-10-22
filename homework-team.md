@@ -46,5 +46,7 @@ https://registry.terraform.io/modules/terraform-aws-modules/ec2-instance/aws/lat
 Создайте аналогичный инстанс при помощи найденного модуля.   
 
 В качестве результата задания приложите ссылку на созданный блок конфигураций. 
-
+```
+https://github.com/Destian1995/devops-netology/tree/main/terraform-instances
+```
 ---
