@@ -248,6 +248,5 @@ ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    s
 vagrant@vagrant:~/ansible$
 ```
 12. Заполните `README.md` ответами на вопросы. Сделайте `git push` в ветку `master`. В ответе отправьте ссылку на ваш открытый репозиторий с изменённым `playbook` и заполненным `README.md`.
-```
-https://github.com/Destian1995/ansible
-```
+
+[Репозиторий Ansible](https://github.com/Destian1995/ansible)
