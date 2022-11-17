@@ -510,7 +510,10 @@ Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
 
 ![1](https://user-images.githubusercontent.com/106807250/202418054-d96f03a4-f5b7-40c8-a4e3-4f24cca82d29.jpg)
 
-
+Все на месте.
+```
+terraform destroy --auto-approve
+```
 
 
 
