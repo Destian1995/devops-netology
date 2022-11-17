@@ -251,9 +251,10 @@ Note: You didn't use the -out option to save this plan, so Terraform can't guara
 [vagrant@localhost ansible-yandex]$
 
 ```
-```
+
 Видим что проблем нет.
 Будем иметь:
+```
 Сервер clickhouse-01 для сбора логов.
 Сервер vector-01, генерирующий и обрабатывающий логи.
 Сервер lighthouse-01 - веб-интерфейс для clickhouse-01
