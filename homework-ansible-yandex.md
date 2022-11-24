@@ -19,9 +19,13 @@
 9. Подготовьте README.md файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги.
 10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-03-yandex` на фиксирующий коммит, в ответ предоставьте ссылку на него.
 
+[Ссылка на репозиторий ansible-yandex](https://github.com/Destian1995/ansible-yandex)
+
+
 Ответ:
-Инфраструктура будет состоять из 3 хостов, развернутых с помощью terraform, он создаст не только тачки, но и создаст inventory файл для ansible
-Список команд для развертывания инфраструктуры ниже
+Инфраструктура будет состоять из 3 хостов, развернутых с помощью terraform, он создаст не только тачки, но и создаст inventory файл для ansible.
+
+Список команд для развертывания инфраструктуры ниже:
 ```
 terraform init
 terraform plan 
@@ -251,9 +255,10 @@ Note: You didn't use the -out option to save this plan, so Terraform can't guara
 [vagrant@localhost ansible-yandex]$
 
 ```
-```
+
 Видим что проблем нет.
 Будем иметь:
+```
 Сервер clickhouse-01 для сбора логов.
 Сервер vector-01, генерирующий и обрабатывающий логи.
 Сервер lighthouse-01 - веб-интерфейс для clickhouse-01
@@ -507,49 +512,9 @@ Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
 ```
 Развернули, проверяем:
 
+![1](https://user-images.githubusercontent.com/106807250/202418054-d96f03a4-f5b7-40c8-a4e3-4f24cca82d29.jpg)
 
-
-
-
-
-
-
-## Playbook
-
-Playbook производит развертывание необходимых приложений на указанные сервера. 
-Для простоты деплоя все хосты сделаны доступными через интернет. 
-
-- ### Clickhouse
-
-  - установка `clickhouse`
-  - настройка удаленных подключений к приложению
-  - создание базы данных и таблицы в ней
-
-
-- ### Vector
-
-  - установка `vector`
-  - изменение конфига приложения для отправки логов на сервер `clickhouse-01`
-
-- ### Lighthouse
-
-  - установка `lighthouse`
-  - настройка `nginx`
-
-## Variables
-
-Через group_vars можно задать следующие параметры:
-- `clickhouse_version`, `vector_installer_url`, `lighthouse_distrib` - версии устанавливаемых приложений;
-- `clickhouse_database_name` - имя базы данных для хранения логов;
-- `clickhouse_create_table` - структуру таблицы для хранения логов;
-- `vector_config` - содержимое конфигурационного файла для приложения `vector`;
-- блок конфигурации `nginx` для работы с `lighthouse`;
-
-## Tags
-
-- `clickhouse` производит полную конфигурацию сервера `clickhouse-01`;
-- `clickhouse_db` производит конфигурацию базы данных и таблицы;
-- `vector` производит полную конфигурацию сервера `vector-01`;
-- `vector_config` производит изменение в конфиге приложения `vector`;
-- `lighthouse` производит установку `lighthouse`.
-- `drop_clickhouse_database_logs` удаляет базу данных (по умолчанию не выполняется);
+Все на месте.
+```
+terraform destroy --auto-approve
+```
