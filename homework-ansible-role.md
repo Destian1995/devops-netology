@@ -45,7 +45,6 @@ Starting galaxy role install process
 10. Выложите playbook в репозиторий.
 11. В ответ приведите ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
 
---
 
 [lighthouse-role](https://github.com/Destian1995/lighthouse-role)
 --
