@@ -44,8 +44,12 @@ Starting galaxy role install process
 9. Переработайте playbook на использование roles. Не забудьте про зависимости lighthouse и возможности совмещения `roles` с `tasks`.
 10. Выложите playbook в репозиторий.
 11. В ответ приведите ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
+
+--
 [lighthouse-role](https://github.com/Destian1995/lighthouse-role)
+--
 [vector-role](https://github.com/Destian1995/vector-role)
+--
 [playbook](https://github.com/Destian1995/ansible-role)
 ---
 
