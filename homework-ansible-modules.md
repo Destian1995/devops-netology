@@ -240,20 +240,26 @@ Created collection for my_own_namespace.yandex_cloud_elk at /root/my_own_collect
 15. Установите collection из локального архива: `ansible-galaxy collection install <archivename>.tar.gz`
 16. Запустите playbook, убедитесь, что он работает.
 ```
-vagrant@vagrant:~/test/my_own_collection/my_own_namespace/yandex_cloud_elk$ ansible-playbook -i inventory/hosts.yml site.yml 
-[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if you are modifying the Ansible engine, or trying out features under development. This
-is a rapidly changing source of code and can become unstable at any point.
+vagrant@vagrant:~/test/test_targz$ ansible-playbook -i inventory/hosts.yml site.yml 
 
-PLAY [Test my_own_module in yandex.cloud] ******************************************************************************************************************************************************
+PLAY [Test my_own_module] ******************************************************************************************************************************************************
 
-TASK [Gathering Facts] *************************************************************************************************************************************************************************
-ok: [centos-ansible]
-
-TASK [my_role : Execute module] ****************************************************************************************************************************************************************
+TASK [Execute module] ****************************************************************************************************************************************************************
 changed: [centos-ansible]
 
 PLAY RECAP *************************************************************************************************************************************************************************************
-centos-ansible             : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+centos-ansible             : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
+```
+vagrant@vagrant:~/test/test_targz$ ansible-playbook -i inventory/hosts.yml site.yml 
+
+PLAY [Test my_own_module] ******************************************************************************************************************************************************
+
+TASK [Execute module] ****************************************************************************************************************************************************************
+ok: [centos-ansible]
+
+PLAY RECAP *************************************************************************************************************************************************************************************
+centos-ansible             : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 17. В ответ необходимо прислать ссылку на репозиторий с collection
 
