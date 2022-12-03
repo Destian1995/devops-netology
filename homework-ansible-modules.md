@@ -258,5 +258,5 @@ centos-ansible             : ok=2    changed=1    unreachable=0    failed=0    s
 17. В ответ необходимо прислать ссылку на репозиторий с collection
 
 
-[Репозиторий](https://github.com/Destian1995/my_own_collection/tree/master/my_own_namespace/yandex_cloud_elk)
+[Репозиторий](https://github.com/Destian1995/my_own_collection/tree/1.0.0/my_own_namespace/yandex_cloud_elk)
 --
