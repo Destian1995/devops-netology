@@ -131,9 +131,8 @@ P.S.: если при запуске некоторые контейнеры б�
 `./data:/var/lib:Z`
 
 ---
-```
+![1](https://user-images.githubusercontent.com/106807250/212663079-db79dc8b-d941-478d-bd42-1fb022596814.jpg)
 
-```
 
 
 
@@ -148,6 +147,14 @@ P.S.: если при запуске некоторые контейнеры б�
 
 Для выполнения задания приведите скриншот с отображением метрик утилизации места на диске 
 (disk->host->telegraf_container_id) из веб-интерфейса.
+
+Так как данные метрики отсутствовали для их отображения я добавил в файл telegraf.conf
+```
+[[inputs.disk]]
+[[inputs.mem]]
+```
+![2](https://user-images.githubusercontent.com/106807250/212663393-89632b39-f1ef-401c-a2a6-9615897eb271.jpg)
+![3](https://user-images.githubusercontent.com/106807250/212663422-93b08108-766f-4a0d-adeb-38aa0d19238b.jpg)
 
 
 9. Изучите список [telegraf inputs](https://github.com/influxdata/telegraf/tree/master/plugins/inputs). 
@@ -179,5 +186,55 @@ P.S.: если при запуске некоторые контейнеры б�
 
 Факультативно можете изучить какие метрики собирает telegraf после выполнения данного задания.
 
+Необходимо было добавить владельца сокета в telegraf docker-compose.yml.
+
+```
+vagrant@vagrant:~/sandbox$ stat -c '%g' /var/run/docker.sock
+997
+
+user telegraf:997
+```
+
+Изменил контейнер telegraf в docker-compose.yml.
+
+```
+  telegraf:
+    # Full tag list: https://hub.docker.com/r/library/telegraf/tags/
+    build:
+      context: ./images/telegraf/
+      dockerfile: ./${TYPE}/Dockerfile
+      args:
+        TELEGRAF_TAG: ${TELEGRAF_TAG}
+    image: "telegraf"
+    privileged: true
+    user: telegraf:997
+    environment:
+      HOSTNAME: "telegraf-getting-started"
+    # Telegraf requires network access to InfluxDB
+    links:
+      - influxdb
+    volumes:
+      # Mount for telegraf configuration
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:Z
+      # Mount for Docker API access
+      - /var/run/docker.sock:/var/run/docker.sock:Z
+    depends_on:
+      - influxdb
+    ports:
+      - "8092:8092/udp"
+      - "8094:8094"
+      - "8125:8125/udp"
+```
+Добавил докер метрики в telegraf.conf 
+
+```
+[[inputs.docker]]
+  endpoint = "unix:///var/run/docker.sock"
+  container_names = []
+  timeout = "5s"
+  perdevice = true
+  total = false
+```
+![4](https://user-images.githubusercontent.com/106807250/212664542-d6a17984-8429-4e98-b3a8-ebfd0d9c6dee.jpg)
 
 
