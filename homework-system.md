@@ -124,6 +124,18 @@ __pull model__:
     - curl http://localhost:8086/ping
     - curl http://localhost:8888
     - curl http://localhost:9092/kapacitor/v1/ping
+	
+```
+vagrant@vagrant:~/sandbox$ curl http://localhost:8086
+```
+```
+vagrant@vagrant:~/sandbox$ curl http://localhost:8888
+<!DOCTYPE html><html><head><link rel="stylesheet" href="/index.c708214f.css"><meta http-equiv="Content-type" 
+content="text/html; charset=utf-8"><title>Chronograf</title><link rel="icon shortcut" href="/favicon.70d63073.ico"></head><body> <div id="react-root" data-basepath=""></div> <script type="module" src="/index.e81b88ee.js"></script><script src="/index.a6955a67.js" nomodule="" defer></script> </body></html>
+```
+```
+curl http://localhost:9092/kapacitor/v1/ping
+```
 
 А также скриншот веб-интерфейса ПО chronograf (`http://localhost:8888`). 
 
@@ -131,7 +143,7 @@ P.S.: если при запуске некоторые контейнеры б�
 `./data:/var/lib:Z`
 
 ---
-![1](https://user-images.githubusercontent.com/106807250/212663079-db79dc8b-d941-478d-bd42-1fb022596814.jpg)
+
 
 
 
