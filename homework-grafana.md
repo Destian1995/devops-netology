@@ -29,6 +29,26 @@
 
 Решение домашнего задания - скриншот веб-интерфейса grafana со списком подключенных Datasource.
 
+В этом задании при развертывании использовал другой манифест
+```
+version: '3'
+services:
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana-data:/var/lib/grafana
+volumes:
+  grafana-data:
+```
+
 ![1](https://user-images.githubusercontent.com/106807250/213429728-885243c8-3705-4d33-b1b8-97f94ec0e966.jpg)
 
 
