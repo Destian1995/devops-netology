@@ -29,7 +29,43 @@
 
 Решение домашнего задания - скриншот веб-интерфейса grafana со списком подключенных Datasource.
 
+Так же попробовал вот такой манифест
+```
+version: '3'
+services:
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+  node-exporter:
+    image: prom/node-exporter
+    user: root
+    ports:
+      - 9100:9100
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+volumes:
+  grafana-data:
+  prometheus:
+```
+В этом манифесте, мы используем образы prom/prometheus, prom/node-exporter и grafana/grafana из Docker Hub. 
+Мы открываем порты 9090 для Prometheus, 9100 для node-exporter, и 3000 для Grafana, чтобы мы могли получить доступ к ним из браузера. 
+Мы также монтируем конфигурационный файл Prometheus и директорию данных Grafana.
 
+В конфигурационном файле prometheus.yml должны быть указаны источники данных node-exporter и счётчики, которые необходимо собирать.
+
+Теперь в Grafana необходимо добавить datasource Prometheus и создать дашборды для отображения данных.
 
 ![1](https://user-images.githubusercontent.com/106807250/213429728-885243c8-3705-4d33-b1b8-97f94ec0e966.jpg)
 
@@ -86,5 +122,5 @@ node_filesystem_avail_bytes
 
 В решении задания - приведите листинг этого файла.
 
-
+[Dashboards](https://github.com/Destian1995/grafana/blob/main/node-dashboard.json)
 ---
