@@ -61,7 +61,7 @@ volumes:
 ```
 
 В этом манифесте, мы используем образы prom/prometheus, prom/node-exporter и grafana/grafana из Docker Hub. 
-Мы открываем порты 9090 для Prometheus, 9100 для node-exporter, и 3000 для Grafana, чтобы мы могли получить доступ к ним из браузера. 
+Мы открываем порты 9090 для Prometheus, 9100 для node-exporter, и 3000 для Grafana. 
 Мы также монтируем конфигурационный файл Prometheus и директорию данных Grafana.
 
 В конфигурационном файле prometheus.yml должны быть указаны источники данных node-exporter и счётчики, которые необходимо собирать.
