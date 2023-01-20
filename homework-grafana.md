@@ -29,6 +29,7 @@
 
 Решение домашнего задания - скриншот веб-интерфейса grafana со списком подключенных Datasource.
 
+![2023-01-20_105850](https://user-images.githubusercontent.com/106807250/213636233-efbbe4e1-2abb-48f4-87e7-05316b1af3f3.jpg)
 
 
 
