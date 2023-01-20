@@ -30,8 +30,7 @@
 Решение домашнего задания - скриншот веб-интерфейса grafana со списком подключенных Datasource.
 
 
-
-![1](https://user-images.githubusercontent.com/106807250/213429728-885243c8-3705-4d33-b1b8-97f94ec0e966.jpg)
+![2023-01-19_193930](https://user-images.githubusercontent.com/106807250/213636015-2246cec1-51a5-426e-bd67-2da68fb64f90.jpg)
 
 
 ## Задание 2
