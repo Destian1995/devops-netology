@@ -29,9 +29,8 @@
 
 Решение домашнего задания - скриншот веб-интерфейса grafana со списком подключенных Datasource.
 
+![2023-01-20_105850](https://user-images.githubusercontent.com/106807250/213636233-efbbe4e1-2abb-48f4-87e7-05316b1af3f3.jpg)
 
-
-![1](https://user-images.githubusercontent.com/106807250/213429728-885243c8-3705-4d33-b1b8-97f94ec0e966.jpg)
 
 
 ## Задание 2
@@ -66,12 +65,16 @@ Disk Free Space
 ```
 node_filesystem_avail_bytes
 ```
+![2](https://user-images.githubusercontent.com/106807250/213434130-52edecf1-fcd5-429c-83c9-edddad05b6f6.png)
 
 
 ## Задание 3
 Создайте для каждой Dashboard подходящее правило alert (можно обратиться к первой лекции в блоке "Мониторинг").
 
 Для решения ДЗ - приведите скриншот вашей итоговой Dashboard.
+![3](https://user-images.githubusercontent.com/106807250/213434328-70f6bb0f-812f-483f-9792-341870ac8b45.png)
+
+
 
 ## Задание 4
 Сохраните ваш Dashboard.
@@ -82,4 +85,5 @@ node_filesystem_avail_bytes
 
 В решении задания - приведите листинг этого файла.
 
+[Dashboards](https://github.com/Destian1995/grafana/blob/main/node-dashboard.json)
 ---
