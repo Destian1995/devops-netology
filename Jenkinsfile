@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'molecule' }
     environment {
-        ROLE = "vector-role"
+        ROLE = "lighthouse-role"
     }
     parameters {
         choice(name: 'TEST', choices: ['only default', 'all'], description: 'Test cases')
