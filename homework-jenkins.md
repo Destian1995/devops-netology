@@ -19,8 +19,8 @@
 8. Отправить ссылку на репозиторий с ролью и Declarative Pipeline и Scripted Pipeline.
 
 
-[]()
-[]()
+[vector-role Jenkinsfile](https://github.com/Destian1995/devops-netology/blob/vector-role/Jenkinsfile)
+[lighthouse-role Jenkinsfile](https://github.com/Destian1995/devops-netology/blob/lighthouse-role/Jenkinsfile)
 [ScriptedJenkinsfile](https://github.com/Destian1995/Jenkins/blob/main/homework/ScriptedJenkinsfile)
 
 
