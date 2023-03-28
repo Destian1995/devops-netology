@@ -187,7 +187,11 @@ microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:
 ```
 
 
-Пытался решить проблему с прокси(может в ней дело)
+Пытался решить проблему с прокси(может в нем дело) потому что ранее всплывала такая ошибка
+```
+Unable to connect to the server: net/http: TLS handshake timeout
+```
+Но после выполнения этих команд, все стало нормально.
 ```
 unset http_proxy
 unset https_proxy
@@ -201,7 +205,8 @@ https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
 
 ( ERR_CONNECTION_TIMED_OUT )
 
-Пытался установить Ubuntu как вторую подсистему, однако там нет systemd и в следствии этого образовалось рядом проблем которых не было на ВМ изначально.
+Пытался установить Ubuntu как вторую подсистему, однако там нет systemd и в следствии этого образовалось ряд проблем которых не было на ВМ изначально.
 Просто уже нет времени разбиратся еще и с systemd на локале.
+
 
 
