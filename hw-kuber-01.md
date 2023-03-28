@@ -77,13 +77,16 @@
 
 1. Домашняя работа оформляется в своём Git-репозитории в файле README.md. Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
 2. Файл README.md должен содержать скриншоты вывода команд `kubectl get nodes` и скриншот дашборда.
+
 ```
-vagrant@k8s-master1:~$ microk8s kubectl get nodes
-NAME      STATUS   ROLES                        AGE    VERSION
-vagrant   Ready    controlplane,master   137m   v1.26.1
+vagrant@vagrant:~$ kubectl get nodes
+NAME      STATUS   ROLES    AGE   VERSION
+vagrant   Ready    <none>   17h   v1.26.1
 ```
 
 На сайт дашборда никак не удается зайти.
+
+Развернул я все на ВМ ubuntu 20.04 на своем же компьютере. 
 Установку ввел как и по инструкции выше в этом файле, так и по другим(было подозрение что microk8s не правильно встал)
 Благодря этим туториалам решилась проблема 
 ```
@@ -107,10 +110,98 @@ addons:
     helm3                # (core) Helm 3 - the package manager for Kubernetes
     metrics-server       # (core) K8s Metrics Server for API access to service metrics
 ```
+Вот конфиг для внешнего подключения, юзал разные варианты.
+```
+vagrant@vagrant:~$ cat /var/snap/microk8s/current/certs/csr.conf.template
+[ req ]
+default_bits = 2048
+prompt = no
+default_md = sha256
+req_extensions = req_ext
+distinguished_name = dn
+
+[ dn ]
+C = GB
+ST = Canonical
+L = Canonical
+O = Canonical
+OU = Canonical
+CN = 127.0.0.1
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = kubernetes
+DNS.2 = kubernetes.default
+DNS.3 = kubernetes.default.svc
+DNS.4 = kubernetes.default.svc.cluster
+DNS.5 = kubernetes.default.svc.cluster.local
+IP.1 = 127.0.0.1
+IP.2 = 10.152.183.1
+#IP.4 = 10.0.2.15 - IP самой ВМ
+IP.4 = 10.152.183.137 - IP дашборда
+#MOREIPS
+
+[ v3_ext ]
+authorityKeyIdentifier=keyid,issuer:always
+basicConstraints=CA:FALSE
+keyUsage=keyEncipherment,dataEncipherment,digitalSignature
+extendedKeyUsage=serverAuth,clientAuth
+subjectAltName=@alt_names
+vagrant@vagrant:~$
+```
+сертификаты обновил.
+Так же проверял не упал ли сервис
+```
+vagrant@vagrant:~$ microk8s kubectl get pods -n kube-system
+NAME                                        READY   STATUS    RESTARTS         AGE
+dashboard-metrics-scraper-7bc864c59-mnm2r   1/1     Running   4 (4h6m ago)     17h
+calico-node-xldpd                           1/1     Running   4 (4h6m ago)     17h
+calico-kube-controllers-6ff578f9bd-ljqvs    1/1     Running   4 (4h6m ago)     17h
+kubernetes-dashboard-dc96f9fc-hs7qc         1/1     Running   11 (4m21s ago)   17h
+metrics-server-6f754f88d-dgtsk              1/1     Running   22 (3m55s ago)   17h
+vagrant@vagrant:~$
+```
+Добавлял правило для фаервола
+```
+sudo ufw allow 8001/tcp
+```
+После чего пытался запустить Дашборд
+```
+microk8s kubectl proxy --address 0.0.0.0 --accept-hosts '.*'
+```
+под разными вариантами
+```
+http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+```
+Здесь перед заходом естественно менял IP подключения на соответствующий.
+```
+http://10.0.2.15:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+```
+Но при попытке попасть выдавало 
+( ERR_CONNECTION_TIMED_OUT )
+Тоже самое если использовал другую команду
+```
+microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443 --address='0.0.0.0'
+```
 
 
+Пытался решить проблему с прокси(может в ней дело)
+```
+unset http_proxy
+unset https_proxy
+```
 
+Пытался так же пройти путь заново по этой документации
 
+https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
 
+Но после ввода команды kubectl proxy на сайт зайти не удалось по той же причине.
+
+( ERR_CONNECTION_TIMED_OUT )
+
+Пытался установить Ubuntu как вторую подсистему, однако там нет systemd и в следствии этого образовалось рядом проблем которых не было на ВМ изначально.
+Просто уже нет времени разбиратся еще и с systemd на локале.
 
 
