@@ -84,6 +84,29 @@ vagrant   Ready    controlplane,master   137m   v1.26.1
 ```
 
 На сайт дашборда никак не удается зайти.
+Установку ввел как и по инструкции выше в этом файле, так и по другим(было подозрение что microk8s не правильно встал)
+Благодря этим туториалам решилась проблема 
+```
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+```
+https://gitlab.com/xavki/tutoriels-microk8s/-/blob/master/01-installation-manuelle/slides.md
+https://gitlab.com/xavki/tutoriels-microk8s/-/blob/master/02-extension-dashboard/slides.md
+
+Сам microk8s стоит и дашборд включен.
+```
+vagrant@vagrant:~$ microk8s status
+microk8s is running
+high-availability: no
+  datastore master nodes: 127.0.0.1:19001
+  datastore standby nodes: none
+addons:
+  enabled:
+    dashboard            # (core) The Kubernetes dashboard
+    ha-cluster           # (core) Configure high availability on the current node
+    helm                 # (core) Helm - the package manager for Kubernetes
+    helm3                # (core) Helm 3 - the package manager for Kubernetes
+    metrics-server       # (core) K8s Metrics Server for API access to service metrics
+```
 
 
 
