@@ -117,7 +117,7 @@ preferences: {}
 users:
 - name: admin
   user:
-    token: YzBkNzlIUzgyek5jU092aEQvMEV6UVc2THVScGYweVlqUWlaWkxpcTNhZz0K
+    token: ********TOKEN********
 
 vagrant@vagrant:~$
 ```
