@@ -85,6 +85,8 @@ vagrant   Ready    <none>   17h   v1.26.1
 ```
 
 На сайт дашборда никак не удается зайти.
+Кратко: развернул на ВМ vagrant. microk8s. Но с самого компьютера подключится к сайту дашборда который развернут на ВМ.
+
 
 Развернул я все на ВМ ubuntu 20.04 на своем же компьютере. 
 Установку ввел как и по инструкции выше в этом файле, так и по другим(было подозрение что microk8s не правильно встал)
@@ -94,6 +96,31 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 ```
 https://gitlab.com/xavki/tutoriels-microk8s/-/blob/master/01-installation-manuelle/slides.md
 https://gitlab.com/xavki/tutoriels-microk8s/-/blob/master/02-extension-dashboard/slides.md
+
+Собственно сам config view
+```
+vagrant@vagrant:~$ microk8s config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: ********TOKEN********
+    server: https://10.0.2.15:16443
+  name: microk8s-cluster
+contexts:
+- context:
+    cluster: microk8s-cluster
+    user: admin
+  name: microk8s
+current-context: microk8s
+kind: Config
+preferences: {}
+users:
+- name: admin
+  user:
+    token: YzBkNzlIUzgyek5jU092aEQvMEV6UVc2THVScGYweVlqUWlaWkxpcTNhZz0K
+
+vagrant@vagrant:~$
+```
 
 Сам microk8s стоит и дашборд включен.
 ```
@@ -139,8 +166,8 @@ DNS.4 = kubernetes.default.svc.cluster
 DNS.5 = kubernetes.default.svc.cluster.local
 IP.1 = 127.0.0.1
 IP.2 = 10.152.183.1
-#IP.4 = 10.0.2.15 - IP самой ВМ
-IP.4 = 10.152.183.137 - IP дашборда
+IP.4 = 10.0.2.15 - IP самой ВМ
+#IP.4 = 10.152.183.137 - IP дашборда
 #MOREIPS
 
 [ v3_ext ]
