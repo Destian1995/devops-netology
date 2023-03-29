@@ -144,6 +144,8 @@ https://10.0.2.15:10443
 Вот что получается...
 ![2023-03-29_145046](https://user-images.githubusercontent.com/106807250/228511562-743e2b3d-3e93-41fe-a958-fbd8f8e2779f.jpg)
 
+редактирование файла /var/snap/microk8s/current/certs/csr.conf.template
+тоже результатов не дает...
 
 <details>
 
