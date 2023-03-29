@@ -115,12 +115,39 @@ microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:
 ```
 Что я здесь упустил?
 
+```
+vagrant@vagrant:~$ microk8s config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUREekNDQWZlZ0F3SUJBZ0lVR0lSc2htWW4rUW8rRGZmZUo5NDJZTVdiWm9Zd0RRWUpLb1pJaHZjTkFRRUwKQlFBd0Z6RVZNQk1HQTFVRUF3d01NVEF1TVRVeUxqRTRNeTR4TUI0WERUSXpNRE15T1RFd01qUXhPVm9YRFRNegpNRE15TmpFd01qUXhPVm93RnpFVk1CTUdBMVVFQXd3TU1UQXVNVFV5TGpFNE15NHhNSUlCSWpBTkJna3Foa2lHCjl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUExTGc4RkowQXpyYkRrU3hhK1pXbmxxdkJMeTRsLzVZSU04MzgKNGFONmhUUURNeFJuZFNaaThDaG5KZ0V5amdBVnhhMTcyQy9EM2R6ODJhYVllcU9WMjVDMUlwTDhqZHVSVlJSUgp1WUlnS0NhVlpVQkUxeXNrQzRDN01mRXRFNjcwYksvOEtiZVVYNUxRYXRQd3VTODNYOFZHVjNkcHFaVGZnK3JRCkxUVWNxb25KRDROYk5DQ3RxUWVXajduQXJBQmRTb0RXSTBLOWhRY3FYTWIwZXBaUWZtZDJTUTNRMlJlT2NUcWgKMXN3QnBQWm43Yks3Yk9PMWxYRWNzSTNnMTdTNzlsaC9vZkJMMXRUVDZ4dFBZS24rNGluOXo3QUh3V1FrNXhtRgpGdTJlY2hPS3puRWtjQ1BmL04yZVNDYnl0Tm1XdVRoZkRrRnRkVStPN1REbnBYU1JGUUlEQVFBQm8xTXdVVEFkCkJnTlZIUTRFRmdRVUwwd1djeHdQVEQvUVJESmw0NGp0S2pPaCsyNHdId1lEVlIwakJCZ3dGb0FVTDB3V2N4d1AKVEQvUVJESmw0NGp0S2pPaCsyNHdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QU5CZ2txaGtpRzl3MEJBUXNGQUFPQwpBUUVBanFkWnRYQ2ZvYUpCU3JMMURjOGZDWWV0NCszUFlESFhOZnEyT0YwbjhuZkpjZ3licytoTXZPNnlGNjFlClJsSmkwbXd6T0wwS2dIMUdGT0ZqR0xBMkVyNkpiWU1oS2d1K3BXWUV1Y0x0aW8wVHgrdFNoR1B3WHYrQThYUUYKT0hmeGJ2bFowMFJXaDNZUHlCV0R2Y01SZVlmbHpEbjdIbTJucUduWU5HVVl3T1pZTEIzamNOTkxWRUFSaWNIUApuYU1pRXNLL3dOZDNCRVFzNStONGZFaTl2Z3RRd1ZxRmFVNFRPb0d1ei9WRGw2L2RTMkNCUVg2dHBiY0Q2L2JJCnh3N2lESWI5RGRIY2s1cnF6bnYySDVBTXdTeWl6dzZId3oveG5YdjJWSkxvcEJZdmlBS0RqdGx0eGNSdzVLOTUKOHIrVjdrZ3ZxUndYYWtFTmZFSm1xdXlibUE9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    server: https://10.0.2.15:16443
+  name: microk8s-cluster
+contexts:
+- context:
+    cluster: microk8s-cluster
+    user: admin
+  name: microk8s
+current-context: microk8s
+kind: Config
+preferences: {}
+users:
+- name: admin
+  user:
+    token: RFVaczk2L0cxUFNqZkg1ai96ZmlSaDQxSGFna09GMThhN1BDUU9BVHRuND0K
+
+vagrant@vagrant:~$ microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443 --address='0.0.0.0'
+Forwarding from 0.0.0.0:10443 -> 8443
+```
+при попытке перейти на IP ВМ с клиента:
+https://10.0.2.15:10443
+Вот что получается...
+![2023-03-29_145046](https://user-images.githubusercontent.com/106807250/228511562-743e2b3d-3e93-41fe-a958-fbd8f8e2779f.jpg)
 
 
+<details>
 
-
-
---
+__<summary>Предпринятые шаги</summary>__
 Развернул я все на ВМ ubuntu 20.04 на своем же компьютере. 
 Установку ввел как и по инструкции выше в этом файле, так и по другим(было подозрение что microk8s не правильно встал)
 Благодря этим туториалам решилась проблема 
@@ -226,5 +253,5 @@ https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
 Пытался установить Ubuntu как вторую подсистему, однако там нет systemd и в следствии этого образовалось ряд проблем которых не было на ВМ изначально.
 Просто уже нет времени разбиратся еще и с systemd на локале.
 
-
+<details>
 
