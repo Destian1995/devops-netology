@@ -160,34 +160,21 @@ sudo ufw allow 8001/tcp
 ```
 После чего пытался запустить Дашборд
 ```
-microk8s kubectl proxy --address 0.0.0.0 --accept-hosts '.*'
+microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443
 ```
 под разными вариантами
 ```
-http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
-```
-Здесь перед заходом естественно менял IP подключения на соответствующий.
-```
-http://10.0.2.15:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
-```
-Но при попытке попасть выдавало 
-( ERR_CONNECTION_TIMED_OUT )
-Тоже самое если использовал другую команду
-```
-microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443 --address='0.0.0.0'
-
-и после пытался подключится через
-https://localhost:10443
-
-но там вообще возникала ошибка
+http://localhost:10443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+здесь натыкаюсь на 
 ERR_CONNECTION_REFUSED
 
-попытался с использованием IP ВМ
-https://10.0.2.15:10443
+Пытался другой вариант указав сам IP ВМ
 
-то натыкаюсь на ERR_CONNECTION_TIMED_OUT
+http://10.0.2.15:10443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+
+здесь натыкаюсь на
+( ERR_CONNECTION_TIMED_OUT )
 ```
-
 
 Пытался решить проблему с прокси(может в нем дело) 
 потому что ранее всплывала такая ошибка
