@@ -83,9 +83,13 @@ vagrant@vagrant:~$ kubectl get nodes
 NAME      STATUS   ROLES    AGE   VERSION
 vagrant   Ready    <none>   17h   v1.26.1
 ```
+Вот далее затык...
+
 ``
+
 Кратко: развернул на ВМ vagrant microk8s. Локально с самого хоста с дашбордом curl проходит успешно.
 А вот удаленно подключится с клиента к хосту ВМ с дашбордом не удается.  по причине ERR_CONNECTION_TIMED_OUT.
+
 ``
 
 Развернул я все на ВМ ubuntu 20.04 на своем же компьютере. 
