@@ -92,7 +92,32 @@ vagrant   Ready    <none>   17h   v1.26.1
 А вот удаленно подключится с клиента к хосту ВМ с дашбордом не удается.  по причине ERR_CONNECTION_TIMED_OUT либо ERR_CONNECTION_REFUSED
 если пытаюсь использовать  https://localhost:10443
 ``
+Вот полный скрипт отработки с момента входа в ВМ.
+```
+--скрипт установки microk8s и дашборда
+sudo apt update
+sudo apt install snapd
+sudo snap install microk8s --classic
+mkdir -p $HOME/.kube/
+sudo usermod -a -G microk8s vagrant
+sudo chown -f -R vagrant ~/.kube
+newgrp microk8s
+microk8s status
+microk8s enable dashboard
+microk8s kubectl config view --raw > $HOME/.kube/config
+sudo microk8s refresh-certs --cert front-proxy-client.crt
+TOKEN=$(microk8s kubectl -n kube-system get secret | awk '$1 ~ "default-token" {print $1}')
+microk8s kubectl -n kube-system get secret $TOKEN -o jsonpath='{.data.token}' | base64 -d
+microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443 --address='0.0.0.0'
+```
+Что я здесь упустил?
 
+
+
+
+
+
+--
 Развернул я все на ВМ ubuntu 20.04 на своем же компьютере. 
 Установку ввел как и по инструкции выше в этом файле, так и по другим(было подозрение что microk8s не правильно встал)
 Благодря этим туториалам решилась проблема 
