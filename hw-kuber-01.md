@@ -106,6 +106,9 @@ microk8s status
 microk8s enable dashboard
 microk8s kubectl config view --raw > $HOME/.kube/config
 sudo microk8s refresh-certs --cert front-proxy-client.crt
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+chmod +x ./kubectl;
+sudo mv ./kubectl /usr/local/bin/kubectl;
 TOKEN=$(microk8s kubectl -n kube-system get secret | awk '$1 ~ "default-token" {print $1}')
 microk8s kubectl -n kube-system get secret $TOKEN -o jsonpath='{.data.token}' | base64 -d
 microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443 --address='0.0.0.0'
