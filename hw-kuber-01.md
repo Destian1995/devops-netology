@@ -92,7 +92,10 @@ vagrant   Ready    <none>   17h   v1.26.1
 А вот удаленно подключится с клиента к хосту ВМ с дашбордом не удается.  по причине ERR_CONNECTION_TIMED_OUT либо ERR_CONNECTION_REFUSED
 если пытаюсь использовать  https://localhost:10443
 ``
+
+--
 Вот полный скрипт отработки с момента входа в ВМ.
+-
 ```
 --скрипт установки microk8s и дашборда
 sudo apt update
