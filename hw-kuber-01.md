@@ -170,6 +170,17 @@ http://10.0.2.15:8001/api/v1/namespaces/kube-system/services/https:kubernetes-da
 Тоже самое если использовал другую команду
 ```
 microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443 --address='0.0.0.0'
+
+и после пытался подключится через
+https://localhost:10443
+
+но там вообще возникала ошибка
+ERR_CONNECTION_REFUSED
+
+попытался с использованием IP ВМ
+https://10.0.2.15:10443
+
+то натыкаюсь на ERR_CONNECTION_TIMED_OUT
 ```
 
 
