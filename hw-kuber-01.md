@@ -138,47 +138,6 @@ addons:
     helm3                # (core) Helm 3 - the package manager for Kubernetes
     metrics-server       # (core) K8s Metrics Server for API access to service metrics
 ```
-Вот конфиг для внешнего подключения, юзал разные варианты.
-```
-vagrant@vagrant:~$ cat /var/snap/microk8s/current/certs/csr.conf.template
-[ req ]
-default_bits = 2048
-prompt = no
-default_md = sha256
-req_extensions = req_ext
-distinguished_name = dn
-
-[ dn ]
-C = GB
-ST = Canonical
-L = Canonical
-O = Canonical
-OU = Canonical
-CN = 127.0.0.1
-
-[ req_ext ]
-subjectAltName = @alt_names
-
-[ alt_names ]
-DNS.1 = kubernetes
-DNS.2 = kubernetes.default
-DNS.3 = kubernetes.default.svc
-DNS.4 = kubernetes.default.svc.cluster
-DNS.5 = kubernetes.default.svc.cluster.local
-IP.1 = 127.0.0.1
-IP.2 = 10.152.183.1
-IP.4 = 10.0.2.15 - IP самой ВМ
-#IP.4 = 10.152.183.137 - IP дашборда
-#MOREIPS
-
-[ v3_ext ]
-authorityKeyIdentifier=keyid,issuer:always
-basicConstraints=CA:FALSE
-keyUsage=keyEncipherment,dataEncipherment,digitalSignature
-extendedKeyUsage=serverAuth,clientAuth
-subjectAltName=@alt_names
-vagrant@vagrant:~$
-```
 сертификаты обновил.
 Так же проверял не упал ли сервис
 ```
