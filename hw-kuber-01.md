@@ -162,15 +162,15 @@ sudo ufw allow 8001/tcp
 ```
 microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443
 ```
-под разными вариантами
+под разными вариантами затем пытался подключится с клиента
 ```
-http://localhost:10443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+https://localhost:10443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
 здесь натыкаюсь на 
 ERR_CONNECTION_REFUSED
 
 Пытался другой вариант указав сам IP ВМ
 
-http://10.0.2.15:10443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+https://10.0.2.15:10443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
 
 здесь натыкаюсь на
 ( ERR_CONNECTION_TIMED_OUT )
