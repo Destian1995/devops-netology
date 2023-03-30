@@ -105,3 +105,4 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 microk8s kubectl create token default
 microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443 --address='0.0.0.0'
 ```
+Вход по адресу https://127.0.0.1:10443
