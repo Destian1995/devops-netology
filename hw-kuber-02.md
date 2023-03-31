@@ -57,6 +57,13 @@ service/netology-svc created
 4. Подключиться локально к Service с помощью `kubectl port-forward` и вывести значение (curl или в браузере).
 ![Services](https://user-images.githubusercontent.com/106807250/229061745-c5530625-dd1f-4788-bed7-b75b5ff8162f.jpg)
 
+
+```
+vagrant@vagrant:~/kuber-files$ kubectl get pods
+NAME           READY   STATUS    RESTARTS   AGE
+netology-web   1/1     Running   0          11m
+hello-world    1/1     Running   0          27m
+```
 ------
 
 ### Правила приёма работы
