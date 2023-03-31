@@ -29,8 +29,10 @@
 2. Использовать image - gcr.io/kubernetes-e2e-test-images/echoserver:2.2.
 3. Подключиться локально к Pod с помощью `kubectl port-forward` и вывести значение (curl или в браузере).
 ```
-
+vagrant@vagrant:~/kuber-files$ kubectl apply -f Pod.yaml
+pod/hello-world created
 ```
+![hello-world](https://user-images.githubusercontent.com/106807250/229056467-d7912df7-87a0-4f82-b0c1-25a8657bc6e7.jpg)
 
 ------
 
