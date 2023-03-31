@@ -41,14 +41,22 @@ pod/hello-world created
 1. Создать Pod с именем netology-web.
  
 * [Pod-netology-web](https://github.com/Destian1995/kuber-files/blob/main/netology-web.yaml)
+```
+vagrant@vagrant:~/kuber-files$ kubectl apply -f netology-web.yaml
+pod/netology-web created
+```
+![pod](https://user-images.githubusercontent.com/106807250/229061715-34a3fd1a-1c31-455e-b932-45b62ea23a7d.jpg)
+
 2. Использовать image — gcr.io/kubernetes-e2e-test-images/echoserver:2.2.
 3. Создать Service с именем netology-svc и подключить к netology-web.
-
+```
+vagrant@vagrant:~/kuber-files$ kubectl apply -f Service.yaml
+service/netology-svc created
+```
 * [Pod-netology-svc](https://github.com/Destian1995/kuber-files/blob/main/Service.yaml) 
 4. Подключиться локально к Service с помощью `kubectl port-forward` и вывести значение (curl или в браузере).
-```
+![Services](https://user-images.githubusercontent.com/106807250/229061745-c5530625-dd1f-4788-bed7-b75b5ff8162f.jpg)
 
-```
 ------
 
 ### Правила приёма работы
