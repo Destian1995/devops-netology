@@ -67,7 +67,37 @@ kubectl exec -it multitool-pod -- curl my-app-service
 
 1. Создать Deployment приложения nginx и обеспечить старт контейнера только после того, как будет запущен сервис этого приложения.
 2. Убедиться, что nginx не стартует. В качестве Init-контейнера взять busybox.
+``
+Init контейнер будет выполнять команду nslookup nginx до тех пор, пока не будет успешно выполнено. Это гарантирует, что сервис nginx будет доступен перед запуском основного контейнера.
+``
+```
+После применения манифеста можно проверить, что nginx не запускается, выполнив команду:
+kubectl get pods
+```
 3. Создать и запустить Service. Убедиться, что Init запустился.
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 80
+
+```
+Перед запуском выполняется команда
+```
+kubectl describe pod -all
+```
+после запуска еще раз
+```
+kubectl describe pod -all
+```
 4. Продемонстрировать состояние пода до и после запуска сервиса.
 
 ------
