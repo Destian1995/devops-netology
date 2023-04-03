@@ -51,7 +51,7 @@ deployment.apps/my-app scaled
 vagrant@vagrant:~/kuber-files-03$ kubectl get pods
 NAME                                READY   STATUS             RESTARTS        AGE
 my-app-6658f9886b-6phws             1/2     CrashLoopBackOff   8 (3m55s ago)   32m
-multitool-pod                       1/1     Running            0               28m
+my-app-6c5cbf4897-97xs7             1/2     CrashLoopBackOff   0               28m
 ```
 4. Создать Service, который обеспечит доступ до реплик приложений из п.1.
 
