@@ -97,26 +97,26 @@ spec:
 ```
 Перед запуском 
 ```
-vagrant@vagrant:~/kuber-files-03$ kubectl describe pod nginx
-Name:             nginx-deployment-7f46b584c7-tdzmg
+vagrant@vagrant:~/kuber-files-03$ kubectl describe pod nginx-deployment
+Name:             nginx-deployment-7f46b584c7-2xpbl
 Namespace:        default
 Priority:         0
 Service Account:  default
 Node:             vagrant/10.0.2.15
-Start Time:       Mon, 03 Apr 2023 13:39:57 +0000
+Start Time:       Mon, 03 Apr 2023 16:52:15 +0000
 Labels:           app=nginx
                   pod-template-hash=7f46b584c7
-Annotations:      cni.projectcalico.org/containerID: c4173b0a3f57ae5908f241a01d565f1e56ab2f2be6524b42132e97f9c993f53c
-                  cni.projectcalico.org/podIP: 10.1.52.132/32
-                  cni.projectcalico.org/podIPs: 10.1.52.132/32
+Annotations:      cni.projectcalico.org/containerID: 4734edf3b588eed8ad5145dc798c4c75540458d6685faccbe6fc57c9072f229f
+                  cni.projectcalico.org/podIP: 10.1.52.131/32
+                  cni.projectcalico.org/podIPs: 10.1.52.131/32
 Status:           Pending
-IP:               10.1.52.132
+IP:               10.1.52.131
 IPs:
-  IP:           10.1.52.132
+  IP:           10.1.52.131
 Controlled By:  ReplicaSet/nginx-deployment-7f46b584c7
 Init Containers:
   init-busybox:
-    Container ID:  containerd://5dd8622c26299d71467c3d61946878a42fb0bd68be7aba571e4e7e963a302c59
+    Container ID:  containerd://6c176e82a8f9d6bcf724da29803da6d4a8cabfca1e947de7ed7954099dbe8ba9
     Image:         busybox
     Image ID:      docker.io/library/busybox@sha256:b5d6fe0712636ceb7430189de28819e195e8966372edfc2d9409d79402a0dc16
     Port:          <none>
@@ -126,12 +126,12 @@ Init Containers:
       -c
       until nslookup nginx; do echo waiting for nginx; sleep 2; done;
     State:          Running
-      Started:      Mon, 03 Apr 2023 13:40:10 +0000
+      Started:      Mon, 03 Apr 2023 16:52:39 +0000
     Ready:          False
     Restart Count:  0
     Environment:    <none>
     Mounts:
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-jcnnb (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-2gfz5 (ro)
 Containers:
   nginx:
     Container ID:
@@ -145,7 +145,7 @@ Containers:
     Restart Count:  0
     Environment:    <none>
     Mounts:
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-jcnnb (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-2gfz5 (ro)
 Conditions:
   Type              Status
   Initialized       False
@@ -153,7 +153,7 @@ Conditions:
   ContainersReady   False
   PodScheduled      True
 Volumes:
-  kube-api-access-jcnnb:
+  kube-api-access-2gfz5:
     Type:                    Projected (a volume that contains injected data from multiple sources)
     TokenExpirationSeconds:  3607
     ConfigMapName:           kube-root-ca.crt
@@ -166,94 +166,18 @@ Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists fo
 Events:
   Type     Reason             Age                From               Message
   ----     ------             ----               ----               -------
-  Normal   Scheduled          94s                default-scheduler  Successfully assigned default/nginx-deployment-7f46b584c7-tdzmg to vagrant
-  Normal   Pulling            88s                kubelet            Pulling image "busybox"
-  Normal   Pulled             81s                kubelet            Successfully pulled image "busybox" in 6.180210554s (6.18592615s including waiting)
-  Normal   Created            81s                kubelet            Created container init-busybox
-  Normal   Started            81s                kubelet            Started container init-busybox
-  Warning  MissingClusterDNS  79s (x4 over 93s)  kubelet            pod: "nginx-deployment-7f46b584c7-tdzmg_default(b1af2d67-a8d1-4576-b983-9622c41189a4)". kubelet does not have ClusterDNS IP configured and cannot create Pod using "ClusterFirst" policy. Falling back to "Default" policy.
+  Normal   Scheduled          39s                default-scheduler  Successfully assigned default/nginx-deployment-7f46b584c7-2xpbl to vagrant
+  Normal   Pulling            34s                kubelet            Pulling image "busybox"
+  Normal   Pulled             17s                kubelet            Successfully pulled image "busybox" in 16.6513432s (16.664393928s including waiting)
+  Normal   Created            16s                kubelet            Created container init-busybox
+  Normal   Started            15s                kubelet            Started container init-busybox
+  Warning  MissingClusterDNS  14s (x4 over 38s)  kubelet            pod: "nginx-deployment-7f46b584c7-2xpbl_default(78b9ef8d-048d-4584-b050-5b66e385834e)". kubelet does not have ClusterDNS IP configured and cannot create Pod using "ClusterFirst" policy. Falling back to "Default" policy.
 
 vagrant@vagrant:~/kuber-files-03$
 ```
 после запуска 
 ```
-vagrant@vagrant:~/kuber-files-03$ kubectl describe pod nginx
-Name:             nginx-deployment-7f46b584c7-tdzmg
-Namespace:        default
-Priority:         0
-Service Account:  default
-Node:             vagrant/10.0.2.15
-Start Time:       Mon, 03 Apr 2023 13:39:57 +0000
-Labels:           app=nginx
-                  pod-template-hash=7f46b584c7
-Annotations:      cni.projectcalico.org/containerID: c4173b0a3f57ae5908f241a01d565f1e56ab2f2be6524b42132e97f9c993f53c
-                  cni.projectcalico.org/podIP: 10.1.52.132/32
-                  cni.projectcalico.org/podIPs: 10.1.52.132/32
-Status:           Pending
-IP:               10.1.52.132
-IPs:
-  IP:           10.1.52.132
-Controlled By:  ReplicaSet/nginx-deployment-7f46b584c7
-Init Containers:
-  init-busybox:
-    Container ID:  containerd://5dd8622c26299d71467c3d61946878a42fb0bd68be7aba571e4e7e963a302c59
-    Image:         busybox
-    Image ID:      docker.io/library/busybox@sha256:b5d6fe0712636ceb7430189de28819e195e8966372edfc2d9409d79402a0dc16
-    Port:          <none>
-    Host Port:     <none>
-    Command:
-      sh
-      -c
-      until nslookup nginx; do echo waiting for nginx; sleep 2; done;
-    State:          Running
-      Started:      Mon, 03 Apr 2023 13:40:10 +0000
-    Ready:          False
-    Restart Count:  0
-    Environment:    <none>
-    Mounts:
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-jcnnb (ro)
-Containers:
-  nginx:
-    Container ID:
-    Image:          nginx
-    Image ID:
-    Port:           80/TCP
-    Host Port:      0/TCP
-    State:          Waiting
-      Reason:       PodInitializing
-    Ready:          False
-    Restart Count:  0
-    Environment:    <none>
-    Mounts:
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-jcnnb (ro)
-Conditions:
-  Type              Status
-  Initialized       False
-  Ready             False
-  ContainersReady   False
-  PodScheduled      True
-Volumes:
-  kube-api-access-jcnnb:
-    Type:                    Projected (a volume that contains injected data from multiple sources)
-    TokenExpirationSeconds:  3607
-    ConfigMapName:           kube-root-ca.crt
-    ConfigMapOptional:       <nil>
-    DownwardAPI:             true
-QoS Class:                   BestEffort
-Node-Selectors:              <none>
-Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
-                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
-Events:
-  Type     Reason             Age                  From               Message
-  ----     ------             ----                 ----               -------
-  Normal   Scheduled          3m12s                default-scheduler  Successfully assigned default/nginx-deployment-7f46b584c7-tdzmg to vagrant
-  Normal   Pulling            3m6s                 kubelet            Pulling image "busybox"
-  Normal   Pulled             2m59s                kubelet            Successfully pulled image "busybox" in 6.180210554s (6.18592615s including waiting)
-  Normal   Created            2m59s                kubelet            Created container init-busybox
-  Normal   Started            2m59s                kubelet            Started container init-busybox
-  Warning  MissingClusterDNS  20s (x6 over 3m11s)  kubelet            pod: "nginx-deployment-7f46b584c7-tdzmg_default(b1af2d67-a8d1-4576-b983-9622c41189a4)". kubelet does not have ClusterDNS IP configured and cannot create Pod using "ClusterFirst" policy. Falling back to "Default" policy.
 
-vagrant@vagrant:~/kuber-files-03$
 ```
 4. Продемонстрировать состояние пода до и после запуска сервиса.
 
