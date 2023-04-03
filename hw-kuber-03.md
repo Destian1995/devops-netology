@@ -58,7 +58,8 @@ my-app-6c5cbf4897-2jkhh   2/2     Running            0              22s
 * [Service](https://github.com/Destian1995/kuber-files-03/blob/main/Service.yaml)
 5. Создать отдельный Pod с приложением multitool и убедиться с помощью `curl`, что из пода есть доступ до приложений из п.1.
 ```
-
+kubectl run multitool-pod --image=praqma/network-multitool --restart=Never
+kubectl exec -it multitool-pod -- curl my-app-service
 ```
 ------
 
