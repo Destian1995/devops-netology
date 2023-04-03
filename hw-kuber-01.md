@@ -78,26 +78,16 @@
 1. Домашняя работа оформляется в своём Git-репозитории в файле README.md. Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
 2. Файл README.md должен содержать скриншоты вывода команд `kubectl get nodes` и скриншот дашборда.
 
+Вывод команды:
 ```
 vagrant@vagrant:~$ kubectl get nodes
 NAME      STATUS   ROLES    AGE   VERSION
 vagrant   Ready    <none>   17h   v1.26.1
 ```
-Вот далее затык...
+![2023-03-30_233953](https://user-images.githubusercontent.com/106807250/228946518-5dcc757b-4bbc-4500-9009-e221d44f46b6.jpg)
 
-
-``
-Кратко: 
-развернул на ВМ vagrant microk8s. Локально с самого хоста с дашбордом curl проходит успешно.
-А вот удаленно подключится с клиента к хосту ВМ с дашбордом не удается.  по причине ERR_CONNECTION_TIMED_OUT либо ERR_CONNECTION_REFUSED
-если пытаюсь использовать  https://localhost:10443
-``
-
---
-Вот полный скрипт отработки с момента входа в ВМ.
--
+Скрипт развертывания:
 ```
---скрипт установки microk8s и дашборда
 sudo apt update
 sudo apt install snapd
 sudo snap install microk8s --classic
@@ -110,197 +100,9 @@ microk8s enable dashboard
 microk8s kubectl config view --raw > $HOME/.kube/config
 sudo microk8s refresh-certs --cert front-proxy-client.crt
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
-chmod +x ./kubectl;
-sudo mv ./kubectl /usr/local/bin/kubectl;
-TOKEN=$(microk8s kubectl -n kube-system get secret | awk '$1 ~ "default-token" {print $1}')
-microk8s kubectl -n kube-system get secret $TOKEN -o jsonpath='{.data.token}' | base64 -d
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+microk8s kubectl create token default
 microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443 --address='0.0.0.0'
 ```
-Что я здесь упустил?
-
-```
-vagrant@vagrant:~$ microk8s config view
-apiVersion: v1
-clusters:
-- cluster:
-    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUREekNDQWZlZ0F3SUJBZ0lVR0lSc2htWW4rUW8rRGZmZUo5NDJZTVdiWm9Zd0RRWUpLb1pJaHZjTkFRRUwKQlFBd0Z6RVZNQk1HQTFVRUF3d01NVEF1TVRVeUxqRTRNeTR4TUI0WERUSXpNRE15T1RFd01qUXhPVm9YRFRNegpNRE15TmpFd01qUXhPVm93RnpFVk1CTUdBMVVFQXd3TU1UQXVNVFV5TGpFNE15NHhNSUlCSWpBTkJna3Foa2lHCjl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUExTGc4RkowQXpyYkRrU3hhK1pXbmxxdkJMeTRsLzVZSU04MzgKNGFONmhUUURNeFJuZFNaaThDaG5KZ0V5amdBVnhhMTcyQy9EM2R6ODJhYVllcU9WMjVDMUlwTDhqZHVSVlJSUgp1WUlnS0NhVlpVQkUxeXNrQzRDN01mRXRFNjcwYksvOEtiZVVYNUxRYXRQd3VTODNYOFZHVjNkcHFaVGZnK3JRCkxUVWNxb25KRDROYk5DQ3RxUWVXajduQXJBQmRTb0RXSTBLOWhRY3FYTWIwZXBaUWZtZDJTUTNRMlJlT2NUcWgKMXN3QnBQWm43Yks3Yk9PMWxYRWNzSTNnMTdTNzlsaC9vZkJMMXRUVDZ4dFBZS24rNGluOXo3QUh3V1FrNXhtRgpGdTJlY2hPS3puRWtjQ1BmL04yZVNDYnl0Tm1XdVRoZkRrRnRkVStPN1REbnBYU1JGUUlEQVFBQm8xTXdVVEFkCkJnTlZIUTRFRmdRVUwwd1djeHdQVEQvUVJESmw0NGp0S2pPaCsyNHdId1lEVlIwakJCZ3dGb0FVTDB3V2N4d1AKVEQvUVJESmw0NGp0S2pPaCsyNHdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QU5CZ2txaGtpRzl3MEJBUXNGQUFPQwpBUUVBanFkWnRYQ2ZvYUpCU3JMMURjOGZDWWV0NCszUFlESFhOZnEyT0YwbjhuZkpjZ3licytoTXZPNnlGNjFlClJsSmkwbXd6T0wwS2dIMUdGT0ZqR0xBMkVyNkpiWU1oS2d1K3BXWUV1Y0x0aW8wVHgrdFNoR1B3WHYrQThYUUYKT0hmeGJ2bFowMFJXaDNZUHlCV0R2Y01SZVlmbHpEbjdIbTJucUduWU5HVVl3T1pZTEIzamNOTkxWRUFSaWNIUApuYU1pRXNLL3dOZDNCRVFzNStONGZFaTl2Z3RRd1ZxRmFVNFRPb0d1ei9WRGw2L2RTMkNCUVg2dHBiY0Q2L2JJCnh3N2lESWI5RGRIY2s1cnF6bnYySDVBTXdTeWl6dzZId3oveG5YdjJWSkxvcEJZdmlBS0RqdGx0eGNSdzVLOTUKOHIrVjdrZ3ZxUndYYWtFTmZFSm1xdXlibUE9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
-    server: https://10.0.2.15:16443
-  name: microk8s-cluster
-contexts:
-- context:
-    cluster: microk8s-cluster
-    user: admin
-  name: microk8s
-current-context: microk8s
-kind: Config
-preferences: {}
-users:
-- name: admin
-  user:
-    token: RFVaczk2L0cxUFNqZkg1ai96ZmlSaDQxSGFna09GMThhN1BDUU9BVHRuND0K
-
-vagrant@vagrant:~$ microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443 --address='0.0.0.0'
-Forwarding from 0.0.0.0:10443 -> 8443
-```
-при попытке перейти на IP ВМ с клиента:
-https://10.0.2.15:10443
-Вот что получается...
-![2023-03-29_145046](https://user-images.githubusercontent.com/106807250/228511562-743e2b3d-3e93-41fe-a958-fbd8f8e2779f.jpg)
-
-редактирование файла /var/snap/microk8s/current/certs/csr.conf.template
-тоже результатов не дает...
-```
-vagrant@vagrant:~$ cat /var/snap/microk8s/current/certs/csr.conf.template
-[ req ]
-default_bits = 2048
-prompt = no
-default_md = sha256
-req_extensions = req_ext
-distinguished_name = dn
-
-[ dn ]
-C = GB
-ST = Canonical
-L = Canonical
-O = Canonical
-OU = Canonical
-CN = 127.0.0.1
-
-[ req_ext ]
-subjectAltName = @alt_names
-
-[ alt_names ]
-DNS.1 = kubernetes
-DNS.2 = kubernetes.default
-DNS.3 = kubernetes.default.svc
-DNS.4 = kubernetes.default.svc.cluster
-DNS.5 = kubernetes.default.svc.cluster.local
-IP.1 = 127.0.0.1
-IP.2 = 10.152.183.1
-IP.4 = 10.152.183.1
-#MOREIPS
-
-[ v3_ext ]
-authorityKeyIdentifier=keyid,issuer:always
-basicConstraints=CA:FALSE
-keyUsage=keyEncipherment,dataEncipherment,digitalSignature
-extendedKeyUsage=serverAuth,clientAuth
-subjectAltName=@alt_names
-vagrant@vagrant:~$
-```
-
-Почему именно так отредактирвал?
-В следствии рекомендации:
-https://stackoverflow.com/questions/63451290/microk8s-devops-unable-to-connect-to-the-server-x509-certificate-is-valid-f
-на место IP.4 пытался так же и адрес ВМ пробросить 10.0.2.15 Однако тоже без результатов.
-
-<details>
-
-__<summary>Предпринятые шаги</summary>__
-Развернул я все на ВМ ubuntu 20.04 на своем же компьютере. 
-Установку ввел как и по инструкции выше в этом файле, так и по другим(было подозрение что microk8s не правильно встал)
-Благодря этим туториалам решилась проблема 
-```
-The connection to the server localhost:8080 was refused - did you specify the right host or port?
-```
-https://gitlab.com/xavki/tutoriels-microk8s/-/blob/master/01-installation-manuelle/slides.md
-https://gitlab.com/xavki/tutoriels-microk8s/-/blob/master/02-extension-dashboard/slides.md
-
-Собственно сам config view
-```
-vagrant@vagrant:~$ microk8s config view
-apiVersion: v1
-clusters:
-- cluster:
-    certificate-authority-data: ********TOKEN********
-    server: https://10.0.2.15:16443
-  name: microk8s-cluster
-contexts:
-- context:
-    cluster: microk8s-cluster
-    user: admin
-  name: microk8s
-current-context: microk8s
-kind: Config
-preferences: {}
-users:
-- name: admin
-  user:
-    token: ********TOKEN********
-
-vagrant@vagrant:~$
-```
-
-Сам microk8s стоит и дашборд включен.
-```
-vagrant@vagrant:~$ microk8s status
-microk8s is running
-high-availability: no
-  datastore master nodes: 127.0.0.1:19001
-  datastore standby nodes: none
-addons:
-  enabled:
-    dashboard            # (core) The Kubernetes dashboard
-    ha-cluster           # (core) Configure high availability on the current node
-    helm                 # (core) Helm - the package manager for Kubernetes
-    helm3                # (core) Helm 3 - the package manager for Kubernetes
-    metrics-server       # (core) K8s Metrics Server for API access to service metrics
-```
-сертификаты обновил.
-Так же проверял не упал ли сервис
-```
-vagrant@vagrant:~$ microk8s kubectl get pods -n kube-system
-NAME                                        READY   STATUS    RESTARTS         AGE
-dashboard-metrics-scraper-7bc864c59-mnm2r   1/1     Running   4 (4h6m ago)     17h
-calico-node-xldpd                           1/1     Running   4 (4h6m ago)     17h
-calico-kube-controllers-6ff578f9bd-ljqvs    1/1     Running   4 (4h6m ago)     17h
-kubernetes-dashboard-dc96f9fc-hs7qc         1/1     Running   11 (4m21s ago)   17h
-metrics-server-6f754f88d-dgtsk              1/1     Running   22 (3m55s ago)   17h
-vagrant@vagrant:~$
-```
-Добавлял правило для фаервола
-```
-sudo ufw allow 8001/tcp
-```
-После чего пытался запустить Дашборд
-```
-microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443
-```
-под разными вариантами затем пытался подключится с клиента
-```
-https://localhost:10443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
-здесь натыкаюсь на 
-ERR_CONNECTION_REFUSED
-
-Пытался другой вариант указав сам IP ВМ
-
-https://10.0.2.15:10443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
-
-здесь натыкаюсь на
-( ERR_CONNECTION_TIMED_OUT )
-```
-
-Пытался решить проблему с прокси(может в нем дело) 
-потому что ранее всплывала такая ошибка
-```
-Unable to connect to the server: net/http: TLS handshake timeout
-```
-Gосле выполнения этих команд, ошибка выше исчезла, но к дашборду так и не смог подключится.
-```
-unset http_proxy
-unset https_proxy
-```
-
-Пытался так же пройти путь заново по этой документации
-
-https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
-
-Удается подключится только непосредственно с самого хоста, а вот удаленно с другого клиента никак.
-
-Пробрасывал еще порты в VirtualBox на конкретной машинке, но все тщетно.
-
-Пытался установить Ubuntu как вторую подсистему, однако там нет systemd и в следствии этого образовалось ряд проблем которых не было на ВМ изначально.
-Просто уже нет времени разбиратся еще и с systemd на локале.
-
-<details>
-
+Вход по адресу https://127.0.0.1:10443
