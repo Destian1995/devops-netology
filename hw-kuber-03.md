@@ -36,11 +36,22 @@ deployment.apps/my-app created
 
 *до
 ```
+vagrant@vagrant:~/kuber-files-03$ kubectl get pods
+NAME                      READY   STATUS    RESTARTS      AGE
+my-app-6c5cbf4897-97xs7   2/2     Running   4 (48s ago)   2m45s
+```
+*масштабируем
+```
+vagrant@vagrant:~/kuber-files-03$ kubectl scale deployment my-app --replicas=2
+deployment.apps/my-app scaled
 
 ```
 *после
 ```
-
+vagrant@vagrant:~/kuber-files-03$ kubectl get pods
+NAME                      READY   STATUS             RESTARTS       AGE
+my-app-6c5cbf4897-97xs7   2/2     Running            4 (104s ago)   4m29s
+my-app-6c5cbf4897-2jkhh   2/2     Running            0              22s
 ```
 4. Создать Service, который обеспечит доступ до реплик приложений из п.1.
 
