@@ -25,7 +25,8 @@
 ### Задание 1. Создать Deployment и обеспечить доступ к репликам приложения из другого Pod
 
 1. Создать Deployment приложения, состоящего из двух контейнеров — nginx и multitool. Решить возникшую ошибку.
-[my-app.yaml](https://github.com/Destian1995/kuber-files-03/blob/main/my-app.yaml)
+
+* [my-app.yaml](https://github.com/Destian1995/kuber-files-03/blob/main/my-app.yaml)
 ```
 vagrant@vagrant:~/kuber-files-03$ kubectl --request-timeout 5m apply -f my-app.yaml
 deployment.apps/my-app created
@@ -41,7 +42,8 @@ deployment.apps/my-app created
 
 ```
 4. Создать Service, который обеспечит доступ до реплик приложений из п.1.
-[Service](https://github.com/Destian1995/kuber-files-03/blob/main/Service.yaml)
+
+* [Service](https://github.com/Destian1995/kuber-files-03/blob/main/Service.yaml)
 5. Создать отдельный Pod с приложением multitool и убедиться с помощью `curl`, что из пода есть доступ до приложений из п.1.
 ```
 
