@@ -191,7 +191,12 @@ Events:                      <none>
 
 vagrant@vagrant:~/kuber-files-03$
 ```
-после запуска 
+Создали Service
+```
+vagrant@vagrant:~/kuber-files-03$ k apply -f Service-2.yaml
+service/nginx-service created
+```
+после запуска
 ```
 
 ```
