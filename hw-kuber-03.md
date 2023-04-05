@@ -108,12 +108,12 @@ Init контейнер будет выполнять команду nslookup ng
 ``
 ```
 После применения манифеста можно проверить, что nginx не запускается, выполнив команду:
-vagrant@vagrant:~/kuber-files-03$ kubectl get pods
+vagrant@vagrant:~/kuber-files-03$ k get pods
 NAME                                READY   STATUS     RESTARTS   AGE
-multitool                           1/1     Running    0          5m
-my-app-67d455fc57-r9m2b             2/2     Running    0          18m
-my-app-67d455fc57-925wh             2/2     Running    0          9m39s
-nginx-deployment-7f46b584c7-98w6h   0/1     Init:0/1   0          60s
+nginx-deployment-7f46b584c7-98w6h   0/1     Init:0/1   0          7m32s
+my-app-67d455fc57-r9m2b             2/2     Running    0          25m
+my-app-67d455fc57-925wh             2/2     Running    0          16m
+multitool                           1/1     Running    0          11m
 ```
 3. Создать и запустить Service. Убедиться, что Init запустился.
 
