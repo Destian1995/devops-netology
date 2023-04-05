@@ -194,9 +194,92 @@ vagrant@vagrant:~/kuber-files-03$
 vagrant@vagrant:~/kuber-files-03$ k apply -f Service-2.yaml
 service/nginx-service created
 ```
-после запуска
+после запуска проверяю состояние
+```
+vagrant@vagrant:~/kuber-files-03$ k get pods
+NAME                                READY   STATUS            RESTARTS   AGE
+nginx-deployment-7fdfdb4bdd-7p47d   0/1     PodInitializing   0          84s
+```
+Спустя время проверяю повторно
+```
+vagrant@vagrant:~/kuber-files-03$ k get pods
+NAME                                READY   STATUS    RESTARTS   AGE
+nginx-deployment-7fdfdb4bdd-7p47d   1/1     Running   0          11m
 ```
 
+Вывод конфига пода
+```
+vagrant@vagrant:~/kuber-files-03$ k describe pods nginx-deployment-7fdfdb4bdd-7p47d
+Name:             nginx-deployment-7fdfdb4bdd-7p47d
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             vagrant/10.0.2.15
+Start Time:       Wed, 05 Apr 2023 10:58:42 +0000
+Labels:           app=nginx
+                  pod-template-hash=7fdfdb4bdd
+Annotations:      cni.projectcalico.org/containerID: 57e4ae538bd0e40a0a057b81c56b5638bac0bd8295e20f46b94e157714456bc0
+                  cni.projectcalico.org/podIP: 10.1.52.149/32
+                  cni.projectcalico.org/podIPs: 10.1.52.149/32
+Status:           Running
+IP:               10.1.52.149
+IPs:
+  IP:           10.1.52.149
+Controlled By:  ReplicaSet/nginx-deployment-7fdfdb4bdd
+Init Containers:
+  wait-for-service:
+    Container ID:  containerd://faf2103fc79930b9e63c0d28ac8f3d7e2ac17e304daab530ed0e78d6479bbe6b
+    Image:         busybox
+    Image ID:      docker.io/library/busybox@sha256:b5d6fe0712636ceb7430189de28819e195e8966372edfc2d9409d79402a0dc16
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      until nslookup nginx-service.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for nginx-service; sleep 2; done;
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Wed, 05 Apr 2023 10:59:07 +0000
+      Finished:     Wed, 05 Apr 2023 11:00:02 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-mmbcf (ro)
+Containers:
+  nginx:
+    Container ID:   containerd://8489d2095f93709ff0ed9746a83630db4c79fa3ebcac38f4d76e3592d821cf9e
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:2ab30d6ac53580a6db8b657abf0f68d75360ff5cc1670a85acb5bd85ba1b19c0
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Wed, 05 Apr 2023 11:00:17 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-mmbcf (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
+Volumes:
+  kube-api-access-mmbcf:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
+vagrant@vagrant:~/kuber-files-03$
 ```
 4. Продемонстрировать состояние пода до и после запуска сервиса.
 
