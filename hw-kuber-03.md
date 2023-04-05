@@ -187,15 +187,9 @@ QoS Class:                   BestEffort
 Node-Selectors:              <none>
 Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
                              node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
-Events:
-  Type     Reason            Age    From               Message
-  ----     ------            ----   ----               -------
-  Warning  FailedScheduling  4m58s  default-scheduler  0/1 nodes are available: 1 node(s) had untolerated taint {node.kubernetes.io/unreachable: }. preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling..
-  Normal   Scheduled         4m51s  default-scheduler  Successfully assigned default/nginx-deployment-7f46b584c7-98w6h to vagrant
-  Normal   Pulling           4m15s  kubelet            Pulling image "busybox"
-  Normal   Pulled            3m27s  kubelet            Successfully pulled image "busybox" in 47.364606255s (47.388680744s including waiting)
-  Normal   Created           3m26s  kubelet            Created container init-busybox
-  Normal   Started           3m24s  kubelet            Started container init-busybox
+Events:                      <none>
+
+vagrant@vagrant:~/kuber-files-03$
 ```
 после запуска 
 ```
