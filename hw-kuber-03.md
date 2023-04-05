@@ -62,7 +62,7 @@ service/my-app-service created
 ```
 5. Создать отдельный Pod с приложением multitool и убедиться с помощью `curl`, что из пода есть доступ до приложений из п.1.
 ```
-kubectl run multitool --image=wbitt/network-multitool --restart=Never
+vagrant@vagrant:~/kuber-files-03$ kubectl run multitool --image=wbitt/network-multitool --restart=Never
 vagrant@vagrant:~/kuber-files-03$ kubectl exec -it multitool -- curl my-app-service
 <!DOCTYPE html>
 <html>
