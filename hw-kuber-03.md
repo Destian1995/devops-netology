@@ -97,6 +97,11 @@ vagrant@vagrant:~/kuber-files-03$
 
 * [ngnix-deploymanet](https://github.com/Destian1995/kuber-files-03/blob/main/nginx.yaml)
 
+```
+vagrant@vagrant:~/kuber-files-03$ k apply -f nginx.yaml
+deployment.apps/nginx-deployment created
+```
+
 2. Убедиться, что nginx не стартует. В качестве Init-контейнера взять busybox.
 ``
 Init контейнер будет выполнять команду nslookup nginx до тех пор, пока не будет успешно выполнено. Это гарантирует, что сервис nginx будет доступен перед запуском основного контейнера.
