@@ -28,7 +28,7 @@
 
 * [my-app.yaml](https://github.com/Destian1995/kuber-files-03/blob/main/my-app.yaml)
 ```
-vagrant@vagrant:~/kuber-files-03$ kubectl --request-timeout 5m apply -f my-app.yaml
+vagrant@vagrant:~/kuber-files-03$ kubectl apply -f my-app.yaml
 deployment.apps/my-app created
 ```
 2. После запуска увеличить количество реплик работающего приложения до 2.
@@ -36,9 +36,9 @@ deployment.apps/my-app created
 
 *до
 ```
-vagrant@vagrant:~/kuber-files-03$ kubectl get pods
-NAME                      READY   STATUS    RESTARTS      AGE
-my-app-6c5cbf4897-97xs7   2/2     Running   4 (48s ago)   2m45s
+vagrant@vagrant:~/kuber-files-03$ k get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+my-app-67d455fc57-r9m2b     2/2     Running   0          7m53s
 ```
 *масштабируем
 ```
@@ -48,18 +48,46 @@ deployment.apps/my-app scaled
 ```
 *после
 ```
-vagrant@vagrant:~/kuber-files-03$ kubectl get pods
-NAME                                READY   STATUS             RESTARTS        AGE
-my-app-6658f9886b-6phws             1/2     CrashLoopBackOff   8 (3m55s ago)   32m
-my-app-6c5cbf4897-97xs7             1/2     CrashLoopBackOff   0               28m
+vagrant@vagrant:~/kuber-files-03$ k get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+my-app-67d455fc57-r9m2b     2/2     Running   0          10m
+my-app-67d455fc57-925wh     2/2     Running   0          91s
 ```
 4. Создать Service, который обеспечит доступ до реплик приложений из п.1.
 
 * [Service](https://github.com/Destian1995/kuber-files-03/blob/main/Service.yaml)
+```
+vagrant@vagrant:~/kuber-files-03$ k apply -f Service.yaml
+service/my-app-service created
+```
 5. Создать отдельный Pod с приложением multitool и убедиться с помощью `curl`, что из пода есть доступ до приложений из п.1.
 ```
-kubectl run multitool-pod --image=praqma/network-multitool --restart=Never
-kubectl exec -it multitool-pod -- curl my-app-service
+kubectl run multitool --image=wbitt/network-multitool --restart=Never
+vagrant@vagrant:~/kuber-files-03$ kubectl exec -it multitool -- curl my-app-service
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+vagrant@vagrant:~/kuber-files-03$
 ```
 ------
 
