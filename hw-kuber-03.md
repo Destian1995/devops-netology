@@ -120,7 +120,7 @@ vagrant@vagrant:~/kuber-files-03$
 Перед запуском 
 ```
 vagrant@vagrant:~/kuber-files-03$ kubectl describe pod nginx-deployment
-Name:             nginx-deployment-7f46b584c7-98w6h
+Name:             nginx-deployment-7fdfdb4bdd-7p47d
 Namespace:        default
 Priority:         0
 Service Account:  default
