@@ -26,11 +26,11 @@
 
 1. Создать Deployment приложения, состоящего из двух контейнеров (nginx и multitool), с количеством реплик 3 шт.
 
-*[Deployment](https://github.com/Destian1995/kuber-files-05/blob/main/Deployment.yaml)
+* [Deployment](https://github.com/Destian1995/kuber-files-05/blob/main/Deployment.yaml)
 
 2. Создать Service, который обеспечит доступ внутри кластера до контейнеров приложения из п.1 по порту 9001 — nginx 80, по 9002 — multitool 8080.
 
-*[Service](https://github.com/Destian1995/kuber-files-05/blob/main/Service1.yaml)
+* [Service](https://github.com/Destian1995/kuber-files-05/blob/main/Service1.yaml)
 
 3. Создать отдельный Pod с приложением multitool и убедиться с помощью `curl`, что из пода есть доступ до приложения из п.1 по разным портам в разные контейнеры.
 
@@ -56,7 +56,7 @@ root@multitool-pod:/# curl http://app-service.nginx.svc.cluster.local:9001
 ### Задание 2. Создать Service и обеспечить доступ к приложениям снаружи кластера
 
 1. Создать отдельный Service приложения из Задания 1 с возможностью доступа снаружи кластера к nginx, используя тип NodePort.
-*[Service](https://github.com/Destian1995/kuber-files-05/blob/main/Service2.yaml)
+* [Service](https://github.com/Destian1995/kuber-files-05/blob/main/Service2.yaml)
 2. Продемонстрировать доступ с помощью браузера или `curl` с локального компьютера.
 Через браузер:
 ```
