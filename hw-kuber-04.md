@@ -59,8 +59,13 @@ root@multitool-pod:/# curl http://app-service.nginx.svc.cluster.local:9001
 * [Service](https://github.com/Destian1995/kuber-files-05/blob/main/Service2.yaml)
 2. Продемонстрировать доступ с помощью браузера или `curl` с локального компьютера.
 Через браузер:
+Узнаем IP ноды:
 ```
-http://<node-ip>:30001/
+kubectl get nodes
+```
+И подставляем:
+```
+https://<node-ip>:30001/
 ```
 Через curl:
 ```
