@@ -25,15 +25,15 @@
 ### Задание 1. Создать Deployment и обеспечить доступ к контейнерам приложения по разным портам из другого Pod внутри кластера
 
 1. Создать Deployment приложения, состоящего из двух контейнеров (nginx и multitool), с количеством реплик 3 шт.
+
 *[Deployment](https://github.com/Destian1995/kuber-files-05/blob/main/Deployment.yaml)
-```
-```
 
 2. Создать Service, который обеспечит доступ внутри кластера до контейнеров приложения из п.1 по порту 9001 — nginx 80, по 9002 — multitool 8080.
+
 *[Service](https://github.com/Destian1995/kuber-files-05/blob/main/Service1.yaml)
-```
-```
+
 3. Создать отдельный Pod с приложением multitool и убедиться с помощью `curl`, что из пода есть доступ до приложения из п.1 по разным портам в разные контейнеры.
+
 ```
 kubectl run multitool-pod --image=praqma/network-multitool --restart=Never
 ```
