@@ -58,7 +58,9 @@ root@multitool-pod:/# curl http://app-service.nginx.svc.cluster.local:9001
 1. Создать отдельный Service приложения из Задания 1 с возможностью доступа снаружи кластера к nginx, используя тип NodePort.
 * [Service](https://github.com/Destian1995/kuber-files-05/blob/main/Service2.yaml)
 2. Продемонстрировать доступ с помощью браузера или `curl` с локального компьютера.
+
 Через браузер:
+
 Узнаем IP ноды:
 ```
 kubectl get nodes
