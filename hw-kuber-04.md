@@ -37,13 +37,13 @@
 ```
 kubectl run multitool-pod --image=praqma/network-multitool --restart=Never
 ```
-4. Продемонстрировать доступ с помощью `curl` по доменному имени сервиса.
+Проверка доступа по разным портам:
 ```
 $ kubectl exec -it multitool-pod -- /bin/bash
 root@multitool-pod:/# curl http://app-service:9001
 root@multitool-pod:/# curl http://app-service:9002
 ```
-Проверка доступа по доменному имени:
+4. Продемонстрировать доступ с помощью `curl` по доменному имени сервиса.
 ```
 $ kubectl exec -it multitool-pod -- /bin/bash
 root@multitool-pod:/# curl http://app-service.nginx.svc.cluster.local:9001
