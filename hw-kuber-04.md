@@ -35,7 +35,7 @@
 3. Создать отдельный Pod с приложением multitool и убедиться с помощью `curl`, что из пода есть доступ до приложения из п.1 по разным портам в разные контейнеры.
 
 ```
-kubectl run multitool-pod --image=praqma/network-multitool --restart=Never
+kubectl run multitool-pod --image=wbitt/network-multitool --restart=Never
 ```
 Проверка доступа по разным портам:
 ```
