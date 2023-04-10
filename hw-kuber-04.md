@@ -27,7 +27,21 @@
 1. Создать Deployment приложения, состоящего из двух контейнеров (nginx и multitool), с количеством реплик 3 шт.
 
 * [Deployment](https://github.com/Destian1995/kuber-files-05/blob/main/Deployment.yaml)
-
+```
+vagrant@vagrant:~/kuber-files-05$ k apply -f Deployment.yaml
+deployment.apps/app-deployment created
+vagrant@vagrant:~/kuber-files-05$ k get pods
+NAME                              READY   STATUS              RESTARTS   AGE
+app-deployment-774d9fddcf-4j6h4   0/2     ContainerCreating   0          16s
+app-deployment-774d9fddcf-m2x87   0/2     ContainerCreating   0          17s
+app-deployment-774d9fddcf-szpx5   0/2     ContainerCreating   0          17s
+vagrant@vagrant:~/kuber-files-05$ k get pods
+NAME                              READY   STATUS    RESTARTS   AGE
+app-deployment-774d9fddcf-szpx5   2/2     Running   0          9m30s
+app-deployment-774d9fddcf-4j6h4   2/2     Running   0          9m30s
+app-deployment-774d9fddcf-m2x87   2/2     Running   0          9m30s
+vagrant@vagrant:~/kuber-files-05$
+```
 2. Создать Service, который обеспечит доступ внутри кластера до контейнеров приложения из п.1 по порту 9001 — nginx 80, по 9002 — multitool 8080.
 
 * [Service](https://github.com/Destian1995/kuber-files-05/blob/main/Service1.yaml)
