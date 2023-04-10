@@ -49,11 +49,11 @@ vagrant@vagrant:~/kuber-files-05$
 3. Создать отдельный Pod с приложением multitool и убедиться с помощью `curl`, что из пода есть доступ до приложения из п.1 по разным портам в разные контейнеры.
 
 ```
-kubectl run multitool-pod --image=wbitt/network-multitool --restart=Never
+kubectl run multitool --image=wbitt/network-multitool --restart=Never
 ```
 Проверка доступа по разным портам:
 ```
-vagrant@vagrant:~/kuber-files-05$ kubectl exec -it multitool-pod -- /bin/bash
+vagrant@vagrant:~/kuber-files-05$ kubectl exec -it multitool -- /bin/bash
 bash-5.1# curl http://app-service:9001
 <!DOCTYPE html>
 <html>
@@ -83,8 +83,8 @@ bash-5.1# curl http://app-service:9002
 ```
 4. Продемонстрировать доступ с помощью `curl` по доменному имени сервиса.
 ```
-$ kubectl exec -it multitool-pod -- /bin/bash
-root@multitool-pod:/# curl http://app-service.nginx.svc.cluster.local:9001
+$ kubectl exec -it multitool -- /bin/bash
+:/# curl http://app-service.nginx.svc.cluster.local:9001
 ```
 
 5. Предоставить манифесты Deployment и Service в решении, а также скриншоты или вывод команды п.4.
