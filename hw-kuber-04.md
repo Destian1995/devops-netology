@@ -53,9 +53,33 @@ kubectl run multitool-pod --image=wbitt/network-multitool --restart=Never
 ```
 Проверка доступа по разным портам:
 ```
-$ kubectl exec -it multitool-pod -- /bin/bash
-root@multitool-pod:/# curl http://app-service:9001
-root@multitool-pod:/# curl http://app-service:9002
+vagrant@vagrant:~/kuber-files-05$ kubectl exec -it multitool-pod -- /bin/bash
+bash-5.1# curl http://app-service:9001
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+bash-5.1#
+bash-5.1# curl http://app-service:9002
 ```
 4. Продемонстрировать доступ с помощью `curl` по доменному имени сервиса.
 ```
