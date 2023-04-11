@@ -80,6 +80,7 @@ Commercial support is available at
 </html>
 bash-5.1#
 bash-5.1# curl http://my-app-service:9002
+WBITT Network MultiTool (with NGINX) - my-app-6854487b5f-kc26k - 10.1.52.139 - HTTP: 80 , HTTPS: 443 . (Formerly praqma/network-multitool)
 ```
 4. Продемонстрировать доступ с помощью `curl` по доменному имени сервиса.
 ```
