@@ -54,7 +54,7 @@ kubectl run multitool --image=wbitt/network-multitool --restart=Never
 Проверка доступа по разным портам:
 ```
 vagrant@vagrant:~/kuber-files-05$ kubectl exec -it multitool -- /bin/bash
-bash-5.1# curl http://app-service:9001
+bash-5.1# curl http://my-app-service:9001
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +79,7 @@ Commercial support is available at
 </body>
 </html>
 bash-5.1#
-bash-5.1# curl http://app-service:9002
+bash-5.1# curl http://my-app-service:9002
 ```
 4. Продемонстрировать доступ с помощью `curl` по доменному имени сервиса.
 ```
