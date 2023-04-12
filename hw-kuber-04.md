@@ -49,7 +49,7 @@ deployment-ntl-3-6b9685db56-n22vv   2/2     Running   0          2m34s
 
 * [Pod](https://github.com/Destian1995/kuber-files-05/blob/main/pod-multitool.yaml)
 
-```
+
 Проверка доступа по разным портам:
 ```
 vagrant@vagrant:~/kuber-files-05$ kubectl exec -it multitool -- /bin/bash
