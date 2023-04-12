@@ -49,11 +49,10 @@ deployment-ntl-3-6b9685db56-n22vv   2/2     Running   0          2m34s
 
 * [Pod](https://github.com/Destian1995/kuber-files-05/blob/main/pod-multitool.yaml)
 
-
-Проверка доступа по разным портам:
+4. Продемонстрировать доступ с помощью `curl` по доменному имени сервиса.
 ```
-vagrant@vagrant:~/kuber-files-05$ kubectl exec -it multitool -- /bin/bash
-bash-5.1# curl http://my-app-service:9001
+vagrant@vagrant:~/kuber-files-05$ kubectl exec -it multitool -- sh
+/ # curl 10.152.183.154:9001
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,14 +76,10 @@ Commercial support is available at
 <p><em>Thank you for using nginx.</em></p>
 </body>
 </html>
-bash-5.1#
-bash-5.1# curl http://my-app-service:9002
-WBITT Network MultiTool (with NGINX) - my-app-6854487b5f-kc26k - 10.1.52.139 - HTTP: 80 , HTTPS: 443 . (Formerly praqma/network-multitool)
-```
-4. Продемонстрировать доступ с помощью `curl` по доменному имени сервиса.
-```
-$ kubectl exec -it multitool -- /bin/bash
-:/# curl http://my-app-service.nginx.svc.cluster.local:9001
+/ #
+/ # curl 10.152.183.154:9002
+WBITT Network MultiTool (with NGINX) - deployment-ntl-3-6b9685db56-n22vv - 10.1.52.133 - HTTP: 8080 , HTTPS: 443 . (Formerly praqma/network-multitool)
+/ #
 ```
 
 5. Предоставить манифесты Deployment и Service в решении, а также скриншоты или вывод команды п.4.
