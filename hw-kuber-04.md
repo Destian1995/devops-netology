@@ -92,19 +92,31 @@ WBITT Network MultiTool (with NGINX) - deployment-ntl-3-6b9685db56-n22vv - 10.1.
 * [Service](https://github.com/Destian1995/kuber-files-05/blob/main/Service2.yaml)
 2. Продемонстрировать доступ с помощью браузера или `curl` с локального компьютера.
 
-Через браузер:
+```
+$ curl http://10.152.183.180:30080
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
 
-Узнаем IP ноды:
-```
-kubectl get nodes
-```
-И подставляем:
-```
-https://<node-ip>:30001/
-```
-Через curl:
-```
-$ curl http://<node-ip>:30001/
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
 ```
 3. Предоставить манифест и Service в решении, а также скриншоты или вывод команды п.2.
 
