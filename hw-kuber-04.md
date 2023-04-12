@@ -85,7 +85,7 @@ WBITT Network MultiTool (with NGINX) - my-app-6854487b5f-kc26k - 10.1.52.139 - H
 4. Продемонстрировать доступ с помощью `curl` по доменному имени сервиса.
 ```
 $ kubectl exec -it multitool -- /bin/bash
-:/# curl http://app-service.nginx.svc.cluster.local:9001
+:/# curl http://my-app-service.nginx.svc.cluster.local:9001
 ```
 
 5. Предоставить манифесты Deployment и Service в решении, а также скриншоты или вывод команды п.4.
