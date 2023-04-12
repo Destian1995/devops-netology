@@ -26,9 +26,16 @@
 ### Задание 1. Создать Deployment приложений backend и frontend
 
 1. Создать Deployment приложения _frontend_ из образа nginx с количеством реплик 3 шт.
+* [frontend](https://github.com/Destian1995/kuber-files-04/blob/main/deployment-front.yaml)
 2. Создать Deployment приложения _backend_ из образа multitool. 
+* [backend](https://github.com/Destian1995/kuber-files-04/blob/main/deployment-back.yaml)
+
 3. Добавить Service, которые обеспечат доступ к обоим приложениям внутри кластера. 
 4. Продемонстрировать, что приложения видят друг друга с помощью Service.
+```
+
+```
+
 5. Предоставить манифесты Deployment и Service в решении, а также скриншоты или вывод команды п.4.
 
 ------
@@ -37,7 +44,13 @@
 
 1. Включить Ingress-controller в MicroK8S.
 2. Создать Ingress, обеспечивающий доступ снаружи по IP-адресу кластера MicroK8S так, чтобы при запросе только по адресу открывался _frontend_ а при добавлении /api - _backend_.
+* [Ingress](https://github.com/Destian1995/kuber-files-04/blob/main/ingress.yaml)
+
 3. Продемонстрировать доступ с помощью браузера или `curl` с локального компьютера.
+```
+
+```
+
 4. Предоставить манифесты и скриншоты или вывод команды п.2.
 
 ------
