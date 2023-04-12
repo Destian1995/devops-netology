@@ -29,17 +29,17 @@
 * [Deployment](https://github.com/Destian1995/kuber-files-05/blob/main/Deployment.yaml)
 ```
 vagrant@vagrant:~/kuber-files-05$ k apply -f Deployment.yaml
-deployment.apps/deployment-ntl-3 created
+deployment.apps/deployment-ntl-4 created
 vagrant@vagrant:~/kuber-files-05$ k get pods
 NAME                                READY   STATUS              RESTARTS   AGE
-deployment-ntl-3-6b9685db56-b2w9g   0/2     ContainerCreating   0          36s
-deployment-ntl-3-6b9685db56-59sds   0/2     ContainerCreating   0          37s
-deployment-ntl-3-6b9685db56-n22vv   0/2     ContainerCreating   0          36s
+deployment-ntl-4-6b9685db56-b2w9g   0/2     ContainerCreating   0          36s
+deployment-ntl-4-6b9685db56-59sds   0/2     ContainerCreating   0          37s
+deployment-ntl-4-6b9685db56-n22vv   0/2     ContainerCreating   0          36s
 vagrant@vagrant:~/kuber-files-05$ k get pods
 NAME                                READY   STATUS    RESTARTS   AGE
-deployment-ntl-3-6b9685db56-59sds   2/2     Running   0          2m35s
-deployment-ntl-3-6b9685db56-b2w9g   2/2     Running   0          2m34s
-deployment-ntl-3-6b9685db56-n22vv   2/2     Running   0          2m34s
+deployment-ntl-4-6b9685db56-59sds   2/2     Running   0          2m35s
+deployment-ntl-4-6b9685db56-b2w9g   2/2     Running   0          2m34s
+deployment-ntl-4-6b9685db56-n22vv   2/2     Running   0          2m34s
 ```
 2. Создать Service, который обеспечит доступ внутри кластера до контейнеров приложения из п.1 по порту 9001 — nginx 80, по 9002 — multitool 8080.
 
