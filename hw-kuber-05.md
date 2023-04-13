@@ -53,7 +53,12 @@ vagrant@vagrant:~/kuber-files-04$
 
 front
 ```
-kubectl exec frontend-nginx
+vagrant@vagrant:~/kuber-files-04$ kubectl exec frontend-nginx-579c9dfc44-nvwtc -- curl 10.152.183.154:9002
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0WBITT Network MultiTool (with NGINX) - backend-multitool-5fcd9f4d48-ld4fq - 10.1.52.140 - HTTP: 8080 , HTTPS: 443 . (Formerly praqma/network-multitool)
+100   152  100   152    0     0   1924      0 --:--:-- --:--:-- --:--:--  2000
+vagrant@vagrant:~/kuber-files-04$
 ```
 back
 ```
