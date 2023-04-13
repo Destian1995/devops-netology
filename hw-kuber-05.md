@@ -104,7 +104,33 @@ vagrant@vagrant:~/kuber-files-04$
 
 3. Продемонстрировать доступ с помощью браузера или `curl` с локального компьютера.
 ```
-curl nodes
+vagrant@vagrant:~$ curl 10.0.2.15
+WBITT Network MultiTool (with NGINX) - backend-multitool-5fcd9f4d48-ld4fq - 10.1.52.140 - HTTP: 8080 , HTTPS: 443 . (Formerly praqma/network-multitool)
+vagrant@vagrant:
+vagrant@vagrant:~$ curl 10.0.2.15/api
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
 ```
 
 4. Предоставить манифесты и скриншоты или вывод команды п.2.
