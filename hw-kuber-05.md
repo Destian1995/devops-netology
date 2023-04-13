@@ -63,7 +63,7 @@ vagrant@vagrant:~/kuber-files-04$
 ```
 back
 ```
-kubectl exec backend-multitool
+kubectl exec backend-multitool-5fcd9f4d48-ld4fq -- curl 10.152.183.104:9001
 ```
 5. Предоставить манифесты Deployment и Service в решении, а также скриншоты или вывод команды п.4.
 
