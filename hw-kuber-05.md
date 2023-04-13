@@ -32,6 +32,24 @@
 
 3. Добавить Service, которые обеспечат доступ к обоим приложениям внутри кластера. 
 4. Продемонстрировать, что приложения видят друг друга с помощью Service.
+```
+vagrant@vagrant:~/kuber-files-04$ k get deployment,pods,svc
+NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/frontend-nginx      3/3     3            3           2m3s
+deployment.apps/backend-multitool   1/1     1            1           99s
+
+NAME                                     READY   STATUS    RESTARTS   AGE
+pod/frontend-nginx-579c9dfc44-nvwtc      1/1     Running   0          111s
+pod/frontend-nginx-579c9dfc44-jb5j9      1/1     Running   0          112s
+pod/frontend-nginx-579c9dfc44-gk5f7      1/1     Running   0          111s
+pod/backend-multitool-5fcd9f4d48-ld4fq   1/1     Running   0          95s
+
+NAME                            TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+service/kubernetes              ClusterIP   10.152.183.1     <none>        443/TCP          6m52s
+service/frontend-nginx-svc      NodePort    10.152.183.104   <none>        9001:30080/TCP   119s
+service/backend-multitool-svc   NodePort    10.152.183.154   <none>        9002:30081/TCP   98s
+vagrant@vagrant:~/kuber-files-04$
+```
 
 front
 ```
