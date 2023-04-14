@@ -30,7 +30,7 @@
 
 1. Создать Deployment приложения, состоящего из контейнеров busybox и multitool.
 
-*  [Deployment]()
+*  [Deployment](https://github.com/Destian1995/kuber-files-06/blob/main/Deployment.md)
 
 2. Сделать так, чтобы busybox писал каждые пять секунд в некий файл в общей директории.
 
@@ -52,7 +52,7 @@
 
 1. Создать DaemonSet приложения, состоящего из multitool.
 
-* [DaemonSet]()
+* [DaemonSet](https://github.com/Destian1995/kuber-files-06/blob/main/Deployment.md)
 
 2. Обеспечить возможность чтения файла `/var/log/syslog` кластера MicroK8S.
 3. Продемонстрировать возможность чтения файла изнутри пода.
