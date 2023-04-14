@@ -37,7 +37,12 @@
 3. Обеспечить возможность чтения файла контейнером multitool.
 4. Продемонстрировать, что multitool может читать файл, который периодоически обновляется.
 ```
-
+kubectl exec -it <имя пода>  -c busybox -- sh
+/ #
+/ # cat tmp/cache/1.txt
+kubectl exec -it <имя пода>  -c multitool -- sh
+/ #
+/ # cat multitool/1.txt
 ```
 
 5. Предоставить манифесты Deployment в решении, а также скриншоты или вывод команды из п. 4.
@@ -57,6 +62,8 @@
 2. Обеспечить возможность чтения файла `/var/log/syslog` кластера MicroK8S.
 3. Продемонстрировать возможность чтения файла изнутри пода.
 ```
+kubectl exec -it ds-multitool     -- sh
+/ # tail multitool/syslog
 
 ```
 
