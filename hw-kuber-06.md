@@ -37,12 +37,63 @@
 3. Обеспечить возможность чтения файла контейнером multitool.
 4. Продемонстрировать, что multitool может читать файл, который периодоически обновляется.
 ```
-kubectl exec -it <имя пода>  -c busybox -- sh
-/ #
+vagrant@vagrant:~/kuber-files-06$ k apply -f Deployment.yaml
+deployment.apps/deployment-multi-busy created
+vagrant@vagrant:~/kuber-files-06$ k get pods
+NAME                                     READY   STATUS    RESTARTS   AGE
+deployment-multi-busy-6b98875cdf-9pvwm   2/2     Running   0          52s
+vagrant@vagrant:~/kuber-files-06$ kubectl exec -it deployment-multi-busy-6b98875cdf-9pvwm -c busybox -- sh
 / # cat tmp/cache/1.txt
-kubectl exec -it <имя пода>  -c multitool -- sh
-/ #
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+vagrant@vagrant:~/kuber-files-06$  kubectl exec -it deployment-multi-busy-6b98875cdf-9pvwm -c multitool -- sh
 / # cat multitool/1.txt
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+Test text
+/ #
 ```
 
 5. Предоставить манифесты Deployment в решении, а также скриншоты или вывод команды из п. 4.
