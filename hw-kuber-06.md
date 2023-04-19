@@ -112,7 +112,25 @@ Test text
 
 2. Обеспечить возможность чтения файла `/var/log/syslog` кластера MicroK8S.
 3. Продемонстрировать возможность чтения файла изнутри пода.
-
+```
+vagrant@vagrant:~/kuber-files-06$ k get pods
+NAME                                     READY   STATUS    RESTARTS   AGE
+deployment-multi-busy-6b98875cdf-9pvwm   2/2     Running   0          4m56s
+ds-multitool-8ck6c                       1/1     Running   0          60s
+vagrant@vagrant:~/kuber-files-06$ kubectl exec -it ds-multitool-8ck6c -- sh
+/ # tail multitool/syslog
+Apr 19 06:15:29 vagrant systemd[83616]: run-containerd-runc-k8s.io-516f7793bd028d1e9ffa5a91907d8c63356dd203fb2e872d09011fbd81f9ed17-runc.vz5tpM.mount: Succeeded.
+Apr 19 06:15:29 vagrant systemd[1]: run-containerd-runc-k8s.io-516f7793bd028d1e9ffa5a91907d8c63356dd203fb2e872d09011fbd81f9ed17-runc.vz5tpM.mount: Succeeded.
+Apr 19 06:15:44 vagrant systemd[83616]: run-containerd-runc-k8s.io-516f7793bd028d1e9ffa5a91907d8c63356dd203fb2e872d09011fbd81f9ed17-runc.GQmL2N.mount: Succeeded.
+Apr 19 06:15:44 vagrant systemd[1]: run-containerd-runc-k8s.io-516f7793bd028d1e9ffa5a91907d8c63356dd203fb2e872d09011fbd81f9ed17-runc.GQmL2N.mount: Succeeded.
+Apr 19 06:15:49 vagrant systemd[83616]: run-containerd-runc-k8s.io-516f7793bd028d1e9ffa5a91907d8c63356dd203fb2e872d09011fbd81f9ed17-runc.xYBNB6.mount: Succeeded.
+Apr 19 06:15:49 vagrant systemd[1]: run-containerd-runc-k8s.io-516f7793bd028d1e9ffa5a91907d8c63356dd203fb2e872d09011fbd81f9ed17-runc.xYBNB6.mount: Succeeded.
+Apr 19 06:15:57 vagrant microk8s.daemon-kubelite[112843]: E0417 06:15:57.757015  112843 queueset.go:461] "Overflow" err="queueset::currentR overflow" QS="workload-high" when="2023-04-17 06:15:57.739800239" prevR="31.63220122ss" incrR="184467440737.09549899ss" currentR="31.63218405ss"
+Apr 19 06:15:57 vagrant microk8s.daemon-kubelite[112843]: E0417 06:15:57.792337  112843 queueset.go:461] "Overflow" err="queueset::currentR overflow" QS="workload-high" when="2023-04-17 06:15:57.792279851" prevR="31.70445861ss" incrR="184467440737.09549708ss" currentR="31.70443953ss"
+Apr 19 06:15:59 vagrant systemd[1]: run-containerd-runc-k8s.io-516f7793bd028d1e9ffa5a91907d8c63356dd203fb2e872d09011fbd81f9ed17-runc.h4Vxix.mount: Succeeded.
+Apr 19 06:15:59 vagrant systemd[83616]: run-containerd-runc-k8s.io-516f7793bd028d1e9ffa5a91907d8c63356dd203fb2e872d09011fbd81f9ed17-runc.h4Vxix.mount: Succeeded.
+/ #
+```
 
 4. Предоставить манифесты Deployment, а также скриншоты или вывод команды из п. 2.
 
