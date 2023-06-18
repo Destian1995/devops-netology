@@ -24,8 +24,8 @@
 4. Способ установки выбрать самостоятельно.
 
 
-Попытался развернуть кластер с помощью terraform
-[terraform-манифест](https://github.com/Destian1995/terraform-k8s/tree/main/terraform%20cluster)
+Попытался развернуть кластер с помощью 
+[terraform](https://github.com/Destian1995/terraform-k8s/tree/main/terraform%20cluster)
 далее налить туда kubespray через Ansible.
 [ansible-playbook]()
 
