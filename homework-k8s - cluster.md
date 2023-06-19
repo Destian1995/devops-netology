@@ -22,7 +22,77 @@
 2. В качестве CRI — containerd.
 3. Запуск etcd производить на мастере.
 4. Способ установки выбрать самостоятельно.
+> На мастер-ноде: 
+> Установка минимального набора ПО
+```shell script
+{
+    sudo apt-get update
+    sudo apt-get install -y apt-transport-https ca-certificates curl
+    sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+    
+    sudo apt-get update
+    sudo apt-get install -y kubelet kubeadm kubectl containerd
+    sudo apt-mark hold kubelet kubeadm kubectl
+}
+```
+> Включение ip-forward:
+```shell script
 
+modprobe br_netfilter 
+echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
+echo "net.bridge.bridge-nf-call-iptables=1" >> /etc/sysctl.conf
+echo "net.bridge.bridge-nf-call-arptables=1" >> /etc/sysctl.conf
+echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
+
+sysctl -p /etc/sysctl.conf
+```
+> 
+> Инициализация ноды
+```shell script
+kubeadm init \
+  --apiserver-advertise-address=10.0.0.27 \
+  --pod-network-cidr 10.244.0.0/16 \
+  --apiserver-cert-extra-sans=158.160.40.243
+```
+>По итогу получаем команду для подключения воркеров к ноде: 
+``` shell script
+kubeadm join 10.0.0.27:6443 --token gx9amz.zk20q3ythz55mji3 \
+        --discovery-token-ca-cert-hash sha256:20a60c74ba3ab888479587c752f90c3610b1180f27fd364a4028e5a5649c84e5 
+```
+
+
+> На воркер-нодах: 
+> Установка минимального набора ПО
+```shell script
+{
+    sudo apt-get update
+    sudo apt-get install -y apt-transport-https ca-certificates curl
+    sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+    
+    sudo apt-get update
+    sudo apt-get install -y kubelet kubeadm kubectl containerd
+    sudo apt-mark hold kubelet kubeadm kubectl
+}
+```
+> Включение ip-forward:
+```shell script
+
+modprobe br_netfilter 
+echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
+echo "net.bridge.bridge-nf-call-iptables=1" >> /etc/sysctl.conf
+echo "net.bridge.bridge-nf-call-arptables=1" >> /etc/sysctl.conf
+echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
+
+sysctl -p /etc/sysctl.conf
+```
+>По итогу получаем команду для подключения воркеров к ноде: 
+``` shell script
+kubeadm join 10.0.0.27:6443 --token gx9amz.zk20q3ythz55mji3 \
+        --discovery-token-ca-cert-hash sha256:20a60c74ba3ab888479587c752f90c3610b1180f27fd364a4028e5a5649c84e5 
+```
+> Все поднялось, кластер заработал. Ноды друг-друга увидели. 
 
 Попытался развернуть кластер с помощью 
 [terraform](https://github.com/Destian1995/terraform-k8s/tree/main/terraform%20cluster)
