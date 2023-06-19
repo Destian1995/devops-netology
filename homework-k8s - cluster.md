@@ -23,6 +23,8 @@
 Сервера разворачивал с помощью
  
 [terraform](https://github.com/Destian1995/terraform-k8s/tree/main/terraform%20cluster)
+
+
 2. В качестве CRI — containerd.
 3. Запуск etcd производить на мастере.
 4. Способ установки выбрать самостоятельно.
