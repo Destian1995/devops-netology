@@ -19,6 +19,8 @@
 ### Задание 1. Установить кластер k8s с 1 master node
 
 1. Подготовка работы кластера из 5 нод: 1 мастер и 4 рабочие ноды.
+Попытался развернуть кластер с помощью 
+[terraform](https://github.com/Destian1995/terraform-k8s/tree/main/terraform%20cluster)
 2. В качестве CRI — containerd.
 3. Запуск etcd производить на мастере.
 4. Способ установки выбрать самостоятельно.
@@ -94,10 +96,7 @@ kubeadm join 10.0.0.27:6443 --token gx9amz.zk20q3ythz55mji3 \
 ```
 > Все поднялось, кластер заработал. Ноды друг-друга увидели. 
 
-Попытался развернуть кластер с помощью 
-[terraform](https://github.com/Destian1995/terraform-k8s/tree/main/terraform%20cluster)
-далее налить туда kubespray через Ansible.
-[ansible-playbook]()
+
 
 вывод kubectl get nodes:
 ```
