@@ -122,7 +122,7 @@ echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
 sysctl -p /etc/sysctl.conf
 }
 ```
-> 4. Выполнение команды полученной в пункте 2 от мастер-сервера, на каждой ноде:
+> 4. Выполнение команды полученной в пункте 2 от мастер-сервера, на каждой воркер-ноде:
 ```
 sudo kubeadm join 10.0.1.30:6443 --token 9vhroy.vi2pvt1m7ukg8sxe \
          --discovery-token-ca-cert-hash sha256:9c73d69160e0a95112b546b488e9ec8859ee72edde9ea47670b83786a1083550
