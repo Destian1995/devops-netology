@@ -86,6 +86,15 @@ echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
 sysctl -p /etc/sysctl.conf
 }
 ```
+> 1.5 Настраиваем конфиг
+```
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# Установка CNI flannel
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+```
 > 2. Далее инициализация ноды(выполняется только на мастере)
 ```shell script
 kubeadm init \
@@ -98,12 +107,6 @@ kubeadm init \
 ``` shell script
 sudo kubeadm join 10.0.1.30:6443 --token 9vhroy.vi2pvt1m7ukg8sxe \
          --discovery-token-ca-cert-hash sha256:9c73d69160e0a95112b546b488e9ec8859ee72edde9ea47670b83786a1083550
-```
-> 2.5 Настраиваем конфиг
-```
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 > 3. На каждой воркер-ноде: 
