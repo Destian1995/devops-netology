@@ -93,11 +93,7 @@ echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
 
 sysctl -p /etc/sysctl.conf
 ```
->По итогу получаем команду для подключения воркеров к ноде: 
-``` shell script
-kubeadm join 10.0.0.27:6443 --token gx9amz.zk20q3ythz55mji3 \
-        --discovery-token-ca-cert-hash sha256:20a60c74ba3ab888479587c752f90c3610b1180f27fd364a4028e5a5649c84e5 
-```
+
 > Все поднялось, кластер заработал. Ноды друг-друга увидели. 
 
 
