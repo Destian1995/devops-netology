@@ -29,14 +29,15 @@
 3. Запуск etcd производить на мастере.
 4. Способ установки выбрать самостоятельно.
 > На мастер-ноде: 
-> Установка минимального набора ПО
+> Установка ПО
 ```shell script
 {
     sudo apt-get update
+    sudo add-apt-repository --remove "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+    sudo apt-get update
     sudo apt-get install -y apt-transport-https ca-certificates curl
-    sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    sudo curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/kubernetes-archive-keyring.gpg
     echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-    
     sudo apt-get update
     sudo apt-get install -y kubelet kubeadm kubectl containerd
     sudo apt-mark hold kubelet kubeadm kubectl
@@ -69,14 +70,15 @@ kubeadm join 10.0.1.12:6443 --token ubfb0z.0lcvfxudara7bqxo \
 
 
 > На воркер-нодах: 
-> Установка минимального набора ПО
+> Установка ПО
 ```shell script
 {
     sudo apt-get update
+    sudo add-apt-repository --remove "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+    sudo apt-get update
     sudo apt-get install -y apt-transport-https ca-certificates curl
-    sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    sudo curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/kubernetes-archive-keyring.gpg
     echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-    
     sudo apt-get update
     sudo apt-get install -y kubelet kubeadm kubectl containerd
     sudo apt-mark hold kubelet kubeadm kubectl
