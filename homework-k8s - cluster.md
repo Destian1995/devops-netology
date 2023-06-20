@@ -86,7 +86,14 @@ echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
 sysctl -p /etc/sysctl.conf
 }
 ```
-> 1.5 Настраиваем конфиг
+> 2. Далее инициализация ноды(выполняется только на мастере)
+```shell script
+kubeadm init \
+  --apiserver-advertise-address=10.0.1.30 \ - Внутренний IP мастера
+  --pod-network-cidr 10.224.0.0/16 \        - Оставляем как есть это дефолтная настройка.
+  --apiserver-cert-extra-sans=62.84.118.175 - Внешний IP мастера
+```
+> 2.5 Настраиваем конфиг
 ```
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -94,13 +101,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 # Установка CNI flannel
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-```
-> 2. Далее инициализация ноды(выполняется только на мастере)
-```shell script
-kubeadm init \
-  --apiserver-advertise-address=10.0.1.30 \ - Внутренний IP мастера
-  --pod-network-cidr 10.224.0.0/16 \        - Оставляем как есть это дефолтная настройка.
-  --apiserver-cert-extra-sans=62.84.118.175 - Внешний IP мастера
 ```
 
 > По итогу получаем команду для подключения воркеров к ноде: 
