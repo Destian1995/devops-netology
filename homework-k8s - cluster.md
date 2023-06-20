@@ -93,7 +93,7 @@ kubeadm init \
   --pod-network-cidr 10.224.0.0/16 \        - Оставляем как есть это дефолтная настройка.
   --apiserver-cert-extra-sans=62.84.118.175 - Внешний IP мастера
 ```
-> 2.5 Настраиваем конфиг
+>  2.5 Настраиваем конфиг
 ```
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
