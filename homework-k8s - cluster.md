@@ -63,6 +63,7 @@ ubuntu@fhmcbl3qndg3ht6vclou:~$
 4. Способ установки выбрать самостоятельно.
 
 * Выбрал kubeadm
+* Далее идет последовательная установка для создания кластера после развертывания серверов.
 > На мастер-ноде: 
 > Установка ПО
 ```shell script
@@ -85,7 +86,7 @@ echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
 sysctl -p /etc/sysctl.conf
 }
 ```
-> Инициализация ноды
+> Далее инициализация ноды
 ```shell script
 kubeadm init \
   --apiserver-advertise-address=10.0.1.30 \
@@ -99,7 +100,7 @@ sudo kubeadm join 10.0.1.30:6443 --token 9vhroy.vi2pvt1m7ukg8sxe \
 ```
 
 
-> На воркер-нодах: 
+> На каждой воркер-ноде: 
 > Установка минимального ПО
 ```shell script
 {
