@@ -121,7 +121,23 @@ echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
 sysctl -p /etc/sysctl.conf
 }
 ```
-
+> * После того как мы на всех воркерах выполнили команду:
+```
+sudo kubeadm join 10.0.1.30:6443 --token 9vhroy.vi2pvt1m7ukg8sxe \
+         --discovery-token-ca-cert-hash sha256:9c73d69160e0a95112b546b488e9ec8859ee72edde9ea47670b83786a1083550
+```
+Мы связали все воркер ноды в один кластер и прекрепили их к мастер ноде.
+Теперь можно приходить на мастер сервер и проверять кластер:
+```
+ubuntu@fhmcbl3qndg3ht6vclou:~$ kubectl get nodes -o wide
+NAME                   STATUS   ROLES           AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+fhm3i41l1lokbsm6r928   Ready    <none>          4m30s   v1.27.3   10.0.1.24     <none>        Ubuntu 20.04.6 LTS   5.4.0-152-generic   containerd://1.6.12
+fhm4s6takouit25a5omg   Ready    <none>          3m42s   v1.27.3   10.0.1.6      <none>        Ubuntu 20.04.6 LTS   5.4.0-152-generic   containerd://1.6.12
+fhm702ekin4tj76sis5d   Ready    <none>          2m57s   v1.27.3   10.0.1.3      <none>        Ubuntu 20.04.6 LTS   5.4.0-152-generic   containerd://1.6.12
+fhmcbl3qndg3ht6vclou   Ready    control-plane   7m41s   v1.27.3   10.0.1.30     <none>        Ubuntu 20.04.6 LTS   5.4.0-152-generic   containerd://1.6.12
+fhmqercmrgg9kem4f6pu   Ready    <none>          2m17s   v1.27.3   10.0.1.27     <none>        Ubuntu 20.04.6 LTS   5.4.0-152-generic   containerd://1.6.12
+ubuntu@fhmcbl3qndg3ht6vclou:~$
+```
 > Все поднялось, кластер заработал. Ноды друг-друга увидели:
 ```
 vagrant@vagrant:~/terraform-k8s/terraform cluster$ yc compute instances list
