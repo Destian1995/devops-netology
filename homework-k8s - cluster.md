@@ -65,7 +65,7 @@ ubuntu@fhmcbl3qndg3ht6vclou:~$
 * Выбрал kubeadm
 * Далее идет последовательная установка для создания кластера после развертывания серверов.
 > На мастер-ноде: 
-> Установка ПО
+> 1. Установка ПО
 ```shell script
 {
 sudo add-apt-repository --remove "deb http://apt.kubernetes.io/ kubernetes-xenial main"
@@ -86,21 +86,21 @@ echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
 sysctl -p /etc/sysctl.conf
 }
 ```
-> Далее инициализация ноды
+> 2. Далее инициализация ноды(выполняется только на мастере)
 ```shell script
 kubeadm init \
   --apiserver-advertise-address=10.0.1.30 \
   --pod-network-cidr 10.224.0.0/16 \
   --apiserver-cert-extra-sans=62.84.118.175 
 ```
->По итогу получаем команду для подключения воркеров к ноде: 
+> По итогу получаем команду для подключения воркеров к ноде: 
 ``` shell script
 sudo kubeadm join 10.0.1.30:6443 --token 9vhroy.vi2pvt1m7ukg8sxe \
          --discovery-token-ca-cert-hash sha256:9c73d69160e0a95112b546b488e9ec8859ee72edde9ea47670b83786a1083550
 ```
 
 
-> На каждой воркер-ноде: 
+> 3. На каждой воркер-ноде: 
 > Установка минимального ПО
 ```shell script
 {
@@ -122,12 +122,12 @@ echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
 sysctl -p /etc/sysctl.conf
 }
 ```
-> * После того как мы на всех воркерах выполнили команду:
+> 4. Выполнение команды полученной в пункте 2 от мастер-сервера, на каждой ноде:
 ```
 sudo kubeadm join 10.0.1.30:6443 --token 9vhroy.vi2pvt1m7ukg8sxe \
          --discovery-token-ca-cert-hash sha256:9c73d69160e0a95112b546b488e9ec8859ee72edde9ea47670b83786a1083550
 ```
-Мы связали все воркер ноды в один кластер и прекрепили их к мастер ноде.
+Теперь мы связали все воркер ноды в один кластер и прекрепили их к мастер ноде.
 Теперь можно приходить на мастер сервер и проверять кластер:
 ```
 ubuntu@fhmcbl3qndg3ht6vclou:~$ kubectl get nodes -o wide
