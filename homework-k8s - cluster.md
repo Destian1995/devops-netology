@@ -84,10 +84,6 @@ echo "net.bridge.bridge-nf-call-arptables=1" >> /etc/sysctl.conf
 echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
 
 sysctl -p /etc/sysctl.conf
-
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
 }
 ```
 > 2. Далее инициализация ноды(выполняется только на мастере)
@@ -96,6 +92,12 @@ kubeadm init \
   --apiserver-advertise-address=10.0.1.30 \ - Внутренний IP мастера
   --pod-network-cidr 10.224.0.0/16 \        - Оставляем как есть это дефолтная настройка.
   --apiserver-cert-extra-sans=62.84.118.175 - Внешний IP мастера
+```
+> 2.5 Настраиваем конфиг
+```
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 > По итогу получаем команду для подключения воркеров к ноде: 
 ``` shell script
