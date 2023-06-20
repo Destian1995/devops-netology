@@ -93,6 +93,12 @@ kubeadm init \
   --pod-network-cidr 10.224.0.0/16 \        - Оставляем как есть это дефолтная настройка.
   --apiserver-cert-extra-sans=62.84.118.175 - Внешний IP мастера
 ```
+
+> По итогу получаем команду для подключения воркеров к ноде: 
+``` shell script
+sudo kubeadm join 10.0.1.30:6443 --token 9vhroy.vi2pvt1m7ukg8sxe \
+         --discovery-token-ca-cert-hash sha256:9c73d69160e0a95112b546b488e9ec8859ee72edde9ea47670b83786a1083550
+```
 >  2.5 Настраиваем конфиг
 ```
 mkdir -p $HOME/.kube
@@ -101,12 +107,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 # Установка CNI flannel
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-```
-
-> По итогу получаем команду для подключения воркеров к ноде: 
-``` shell script
-sudo kubeadm join 10.0.1.30:6443 --token 9vhroy.vi2pvt1m7ukg8sxe \
-         --discovery-token-ca-cert-hash sha256:9c73d69160e0a95112b546b488e9ec8859ee72edde9ea47670b83786a1083550
 ```
 
 > 3. На каждой воркер-ноде: 
