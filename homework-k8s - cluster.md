@@ -84,6 +84,10 @@ echo "net.bridge.bridge-nf-call-arptables=1" >> /etc/sysctl.conf
 echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
 
 sysctl -p /etc/sysctl.conf
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 }
 ```
 > 2. Далее инициализация ноды(выполняется только на мастере)
@@ -120,6 +124,9 @@ echo "net.bridge.bridge-nf-call-arptables=1" >> /etc/sysctl.conf
 echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
 
 sysctl -p /etc/sysctl.conf
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 }
 ```
 > 4. Выполнение команды полученной в пункте 2 от мастер-сервера, на каждой воркер-ноде:
