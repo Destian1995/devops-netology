@@ -61,7 +61,7 @@ sysctl -p /etc/sysctl.conf
 ```shell script
 kubeadm init \
   --apiserver-advertise-address=10.0.1.12 \
-  --pod-network-cidr 10.0.1.0/24 \
+  --pod-network-cidr 10.224.0.0/16 \
   --apiserver-cert-extra-sans=158.160.110.210
 ```
 >По итогу получаем команду для подключения воркеров к ноде: 
