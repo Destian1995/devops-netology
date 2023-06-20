@@ -57,14 +57,14 @@ sysctl -p /etc/sysctl.conf
 > Инициализация ноды
 ```shell script
 kubeadm init \
-  --apiserver-advertise-address=10.0.0.27 \
-  --pod-network-cidr 10.244.0.0/16 \
-  --apiserver-cert-extra-sans=158.160.40.243
+  --apiserver-advertise-address=10.0.1.12 \
+  --pod-network-cidr 10.0.1.0/24 \
+  --apiserver-cert-extra-sans=158.160.110.210
 ```
 >По итогу получаем команду для подключения воркеров к ноде: 
 ``` shell script
-kubeadm join 10.0.0.27:6443 --token gx9amz.zk20q3ythz55mji3 \
-        --discovery-token-ca-cert-hash sha256:20a60c74ba3ab888479587c752f90c3610b1180f27fd364a4028e5a5649c84e5 
+kubeadm join 10.0.1.12:6443 --token ubfb0z.0lcvfxudara7bqxo \
+        --discovery-token-ca-cert-hash sha256:36550fd1209383fa5f5a580bb77ebdb1a33093d63852149a39e1bad22843c192
 ```
 
 
@@ -102,9 +102,18 @@ kubeadm join 10.0.0.27:6443 --token gx9amz.zk20q3ythz55mji3 \
 
 
 
-вывод kubectl get nodes:
+Все поднялось, кластер заработал. Ноды друг-друга увидели.:
 ```
-
+vagrant@vagrant:~/terraform-k8s/terraform cluster$ yc compute instance list
++----------------------+----------+---------------+---------+-----------------+-------------+
+|          ID          |   NAME   |    ZONE ID    | STATUS  |   EXTERNAL IP   | INTERNAL IP |
++----------------------+----------+---------------+---------+-----------------+-------------+
+| fhm6ih8b56efntsv89fs | worker-3 | ru-central1-a | RUNNING | 130.193.49.51   | 10.0.1.13   |
+| fhm8bsabru45h7loh7dv | worker-1 | ru-central1-a | RUNNING | 158.160.105.75  | 10.0.1.16   |
+| fhmic5s7k69a8g64nt8f | worker-0 | ru-central1-a | RUNNING | 158.160.56.11   | 10.0.1.31   |
+| fhmrt0b5r2ig2qjvd2m9 | master   | ru-central1-a | RUNNING | 158.160.110.210 | 10.0.1.12   |
+| fhms7iq7eaoqj5q0tatl | worker-2 | ru-central1-a | RUNNING | 158.160.106.188 | 10.0.1.34   |
++----------------------+----------+---------------+---------+-----------------+-------------+
 ```
 ## Дополнительные задания (со звёздочкой)
 
