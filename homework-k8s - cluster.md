@@ -89,9 +89,9 @@ sysctl -p /etc/sysctl.conf
 > 2. Далее инициализация ноды(выполняется только на мастере)
 ```shell script
 kubeadm init \
-  --apiserver-advertise-address=10.0.1.30 \
-  --pod-network-cidr 10.224.0.0/16 \
-  --apiserver-cert-extra-sans=62.84.118.175 
+  --apiserver-advertise-address=10.0.1.30 \ - Внутренний IP мастера
+  --pod-network-cidr 10.224.0.0/16 \        - Оставляем как есть это дефолтная настройка.
+  --apiserver-cert-extra-sans=62.84.118.175 - Внешний IP мастера
 ```
 > По итогу получаем команду для подключения воркеров к ноде: 
 ``` shell script
