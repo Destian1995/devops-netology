@@ -87,6 +87,26 @@ backend-to-cache      app=cache      6m19s
 
 Проверяем что трафик запрещен и разрешен.
 ```
+vagrant@vagrant:~/k8s-dep$ kubectl config set-context --current --namespace=app
+Context "kubernetes-admin@cluster.local" modified.
+```
+Проверка доступов frontend -> backend -> cache
+```
+vagrant@vagrant:~/k8s-dep$ kubectl -n app exec frontend-7f55d7684c-nwhfp -- curl backend
+WBITT Network MultiTool (with NGINX) - backend-5dd9956847-rmrhw - 10.1.52.155 - HTTP: 80 , HTTPS: 443 . (Formerly praqma/network-multitool)
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   140  100   140    0     0    290      0 --:--:-- --:--:-- --:--:--   291
+
+vagrant@vagrant:~/k8s-dep$ kubectl -n app exec backend-5dd9956847-rmrhw -- curl cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   137  100   137    0     0    317      0 --:--:-- --:--:-- --:--:--   317
+WBITT Network MultiTool (with NGINX) - cache-9d4b97449-k9mmd - 10.1.52.153 - HTTP: 80 , HTTPS: 443 . (Formerly praqma/network-multitool)
+```
+
+Проверка запрета доступов
+```
 
 ```
 ### Правила приёма работы
