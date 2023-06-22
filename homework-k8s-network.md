@@ -91,7 +91,7 @@ backend-to-cache      app=cache      6m19s
 vagrant@vagrant:~/k8s-dep$ kubectl config set-context --current --namespace=app
 Context "kubernetes-admin@cluster.local" modified.
 ```
-Проверка доступов frontend -> backend -> cache
+Проверка доступов по схеме frontend -> backend -> cache
 ```
 vagrant@vagrant:~/k8s-dep$ kubectl -n app exec frontend-7f55d7684c-nwhfp -- curl backend
 WBITT Network MultiTool (with NGINX) - backend-5dd9956847-rmrhw - 10.1.52.155 - HTTP: 80 , HTTPS: 443 . (Formerly praqma/network-multitool)
@@ -129,7 +129,12 @@ vagrant@vagrant:~/k8s-dep$ kubectl -n app exec cache-9d4b97449-k9mmd -- curl fro
 curl: (28) Failed to connect to frontend port 80 after 182272 ms: Operation timed out
 command terminated with exit code 28
 
-
+vagrant@vagrant:~/k8s-dep$ kubectl -n app exec cache-9d4b97449-k9mmd -- curl backend
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:--  0:02:11 --:--:--     0
+curl: (28) Failed to connect to backend port 80 after 131136 ms: Operation timed out
+command terminated with exit code 28
 ```
 ### Правила приёма работы
 
