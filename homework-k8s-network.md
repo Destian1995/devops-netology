@@ -111,10 +111,24 @@ WBITT Network MultiTool (with NGINX) - cache-9d4b97449-k9mmd - 10.1.52.153 - HTT
 vagrant@vagrant:~/k8s-dep$ kubectl -n app exec frontend-7f55d7684c-nwhfp -- curl cache
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:--  0:01:58 --:--:--     0
   0     0    0     0    0     0      0      0 --:--:--  0:02:11 --:--:--     0
 curl: (28) Failed to connect to cache port 80 after 131354 ms: Operation timed out
 command terminated with exit code 28
+
+vagrant@vagrant:~/k8s-dep$ kubectl -n app exec backend-5dd9956847-rmrhw -- curl frontend
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:--  0:02:10 --:--:--     0
+curl: (28) Failed to connect to frontend port 80 after 130751 ms: Operation timed out
+command terminated with exit code 28
+
+vagrant@vagrant:~/k8s-dep$ kubectl -n app exec cache-9d4b97449-k9mmd -- curl frontend
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:--  0:03:02 --:--:--     0
+curl: (28) Failed to connect to frontend port 80 after 182272 ms: Operation timed out
+command terminated with exit code 28
+
 
 ```
 ### Правила приёма работы
