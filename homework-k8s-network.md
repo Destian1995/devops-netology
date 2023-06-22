@@ -25,7 +25,7 @@
 2. В качестве образа использовать network-multitool.
 3. Разместить поды в namespace App.
 4. Создать политики, чтобы обеспечить доступ frontend -> backend -> cache. Другие виды подключений должны быть запрещены.
-* [network-policy](https://github.com/Destian1995/k8s-dep/blob/main/network_policy.yaml)
+  * [network-policy](https://github.com/Destian1995/k8s-dep/blob/main/network_policy.yaml)
 5. Продемонстрировать, что трафик разрешён и запрещён.
 
 Создаем namespace
@@ -108,6 +108,13 @@ WBITT Network MultiTool (with NGINX) - cache-9d4b97449-k9mmd - 10.1.52.153 - HTT
 
 Проверка запрета доступов
 ```
+vagrant@vagrant:~/k8s-dep$ kubectl -n app exec frontend-7f55d7684c-nwhfp -- curl cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:--  0:01:58 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:02:11 --:--:--     0
+curl: (28) Failed to connect to cache port 80 after 131354 ms: Operation timed out
+command terminated with exit code 28
 
 ```
 ### Правила приёма работы
