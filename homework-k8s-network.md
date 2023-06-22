@@ -25,6 +25,7 @@
 2. В качестве образа использовать network-multitool.
 3. Разместить поды в namespace App.
 4. Создать политики, чтобы обеспечить доступ frontend -> backend -> cache. Другие виды подключений должны быть запрещены.
+* [network-policy](https://github.com/Destian1995/k8s-dep/blob/main/network_policy.yaml)
 5. Продемонстрировать, что трафик разрешён и запрещён.
 
 Создаем namespace
