@@ -1,5 +1,5 @@
 provider "yandex" {
-  service_account_key_file = "key.json"
+  token = "y0_AgAAAABKoqiNAATuwQAAAADNipS88UIe7R7eTAqEKnHTt3FDwpNSgPk"
   cloud_id                 = "b1gfodjsfjm1ue7u0ld7"
   folder_id                = "b1ggthdvv3nparichh2u"
   zone                     = "ru-central1-a"
@@ -9,8 +9,8 @@ data "yandex_compute_image" "ubuntu" {
   family = "ubuntu-2004-lts"
 }
 
-resource "yandex_vpc_network" "net" {
-  name = "net"
+resource "yandex_vpc_network" "network" {
+  name = "network"
 }
 
 resource "yandex_vpc_subnet" "subnet" {
