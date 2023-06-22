@@ -19,11 +19,16 @@
 ### Задание 1. Создать сетевую политику или несколько политик для обеспечения доступа
 
 1. Создать deployment'ы приложений frontend, backend и cache и соответсвующие сервисы.
+  * [frontend](https://github.com/Destian1995/k8s-dep/blob/main/frontend.yaml)
+  * [backend](https://github.com/Destian1995/k8s-dep/blob/main/backend.yaml)
+  * [cache](https://github.com/Destian1995/k8s-dep/blob/main/cache.yaml)
 2. В качестве образа использовать network-multitool.
 3. Разместить поды в namespace App.
 4. Создать политики, чтобы обеспечить доступ frontend -> backend -> cache. Другие виды подключений должны быть запрещены.
 5. Продемонстрировать, что трафик разрешён и запрещён.
+```
 
+```
 ### Правила приёма работы
 
 1. Домашняя работа оформляется в своём Git-репозитории в файле README.md. Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
