@@ -104,6 +104,7 @@ vagrant@vagrant:~/k8s-update-app$
    
 5. Откатиться после неудачного обновления.
 
+>Выясняем какая была последняя рабочая версия
 ```
 vagrant@vagrant:~/k8s-update-app$ kubectl rollout history deployment nginx-multitool view
 deployment.apps/nginx-multitool
@@ -133,11 +134,21 @@ Pod Template:
       HTTPS_PORT:       11443
     Mounts:     <none>
   Volumes:      <none>
-
-После того как выяснили последнюю рабочую версию, откатываемся
+```
+>После того как выяснили последнюю рабочую версию, откатываемся
+```
 vagrant@vagrant:~/k8s-update-app$ kubectl rollout undo deployment nginx-multitool --to-revision=2
 deployment.apps/nginx-multitool rolled back
-
+```
+>Все встало обратно
+```
+vagrant@vagrant:~/k8s-update-app$ kubectl get pods -o wide
+NAME                               READY   STATUS    RESTARTS   AGE     IP            NODE      NOMINATED NODE   READINESS GATES
+nginx-multitool-6c98cfbb56-2g26l   2/2     Running   0          74m     10.1.52.171   vagrant   <none>           <none>
+nginx-multitool-6c98cfbb56-2g89h   2/2     Running   0          10m     10.1.52.173   vagrant   <none>           <none>
+nginx-multitool-6c98cfbb56-nntlb   2/2     Running   0          10m     10.1.52.174   vagrant   <none>           <none>
+nginx-multitool-6c98cfbb56-clm6j   2/2     Running   0          9m58s   10.1.52.175   vagrant   <none>           <none>
+nginx-multitool-6c98cfbb56-dkgb6   2/2     Running   0          10m     10.1.52.176   vagrant   <none>           <none>
 
 ```
    
