@@ -41,9 +41,9 @@ vagrant@vagrant:~/k8s-update-app$ kubectl get pods -o wide
 NAME                               READY   STATUS    RESTARTS   AGE     IP            NODE      NOMINATED NODE   READINESS GATES
 nginx-multitool-748b869d84-tqz7b   2/2     Running   0          5m41s   10.1.52.160   node1     <none>           <none>
 nginx-multitool-748b869d84-rqq5q   2/2     Running   0          5m41s   10.1.52.161   node2     <none>           <none>
-nginx-multitool-748b869d84-98j2n   2/2     Running   0          5m43s   10.1.52.163   node4     <none>           <none>
-nginx-multitool-748b869d84-xbtcn   2/2     Running   0          5m42s   10.1.52.165   node5     <none>           <none>
-nginx-multitool-748b869d84-59ts5   2/2     Running   0          5m42s   10.1.52.162   node3     <none>           <none>
+nginx-multitool-748b869d84-98j2n   2/2     Running   0          5m42s   10.1.52.163   node4     <none>           <none>
+nginx-multitool-748b869d84-xbtcn   2/2     Running   0          5m44s   10.1.52.165   node5     <none>           <none>
+nginx-multitool-748b869d84-59ts5   2/2     Running   0          5m45s   10.1.52.162   node3     <none>           <none>
 ```
   
 2. Обновить версию nginx в приложении до версии 1.20, сократив время обновления до минимума. Приложение должно быть доступно.
