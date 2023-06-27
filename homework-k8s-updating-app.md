@@ -63,6 +63,16 @@ nginx-multitool-6c98cfbb56-2g26l   0/2     ContainerCreating   0          7m8s  
 nginx-multitool-6c98cfbb56-6fs4h   0/2     ContainerCreating   0          32s    <none>        vagrant   <none>           <none>
 nginx-multitool-6c98cfbb56-jz8n9   0/2     ContainerCreating   0          7m7s   <none>        vagrant   <none>           <none>
 
+
+готово
+vagrant@vagrant:~/k8s-update-app$ kubectl get pods -o wide
+NAME                               READY   STATUS    RESTARTS   AGE     IP            NODE      NOMINATED NODE   READINESS GATES
+nginx-multitool-6c98cfbb56-kvrg7   2/2     Running   0          12m     10.1.52.166   vagrant   <none>           <none>
+nginx-multitool-6c98cfbb56-jz8n9   2/2     Running   0          12m     10.1.52.169   vagrant   <none>           <none>
+nginx-multitool-6c98cfbb56-6fs4h   2/2     Running   0          6m12s   10.1.52.168   vagrant   <none>           <none>
+nginx-multitool-6c98cfbb56-64986   2/2     Running   0          12m     10.1.52.170   vagrant   <none>           <none>
+nginx-multitool-6c98cfbb56-2g26l   2/2     Running   0          12m     10.1.52.171   vagrant   <none>           <none>
+vagrant@vagrant:~/k8s-update-app$
 ```
    
 4. Попытаться обновить nginx до версии 1.28, приложение должно оставаться доступным.
