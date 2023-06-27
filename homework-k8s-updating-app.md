@@ -52,6 +52,14 @@ nginx-multitool-748b869d84-xbtcn   2/2     Running   0          5m42s   10.1.52.
 Для обновления выбрал стратегию RollingUpdate.
 Для ускорения обновления приложения необходимо увеличить максимально возможно ресурсы, потребляемые сверх "штатной" работы приложения (если позволяет возможность) (maxSurge: 80%) и минимизировать количество рабочих реплик (но не менее 1) ( maxUnavailable: 80%).
 
+vagrant@vagrant:~/k8s-update-app$ kubectl get pods -o wide
+NAME                               READY   STATUS              RESTARTS   AGE    IP            NODE      NOMINATED NODE   READINESS GATES
+nginx-multitool-748b869d84-59ts5   2/2     Running             0          31m    10.1.52.162   vagrant   <none>           <none>
+nginx-multitool-6c98cfbb56-kvrg7   0/2     ContainerCreating   0          7m9s   <none>        vagrant   <none>           <none>
+nginx-multitool-6c98cfbb56-64986   0/2     ContainerCreating   0          7m8s   <none>        vagrant   <none>           <none>
+nginx-multitool-6c98cfbb56-2g26l   0/2     ContainerCreating   0          7m8s   <none>        vagrant   <none>           <none>
+nginx-multitool-6c98cfbb56-6fs4h   0/2     ContainerCreating   0          32s    <none>        vagrant   <none>           <none>
+nginx-multitool-6c98cfbb56-jz8n9   0/2     ContainerCreating   0          7m7s   <none>        vagrant   <none>           <none>
 
 ```
    
