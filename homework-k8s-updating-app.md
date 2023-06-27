@@ -34,10 +34,29 @@
 1. Создать deployment приложения с контейнерами nginx и multitool. Версию nginx взять 1.19. Количество реплик — 5.
 
   * [Deployment](https://github.com/Destian1995/k8s-update-app/blob/main/nginx-multitool.yaml)
+```
+vagrant@vagrant:~/k8s-update-app$ kubectl apply -f nginx-multitool.yaml
+deployment.apps/nginx-multitool created
+vagrant@vagrant:~/k8s-update-app$ kubectl get pods -o wide
+NAME                               READY   STATUS    RESTARTS   AGE     IP            NODE      NOMINATED NODE   READINESS GATES
+nginx-multitool-748b869d84-tqz7b   2/2     Running   0          5m41s   10.1.52.160   vagrant   <none>           <none>
+nginx-multitool-748b869d84-rqq5q   2/2     Running   0          5m41s   10.1.52.161   vagrant   <none>           <none>
+nginx-multitool-748b869d84-59ts5   2/2     Running   0          5m42s   10.1.52.162   vagrant   <none>           <none>
+nginx-multitool-748b869d84-98j2n   2/2     Running   0          5m43s   10.1.52.163   vagrant   <none>           <none>
+nginx-multitool-748b869d84-xbtcn   2/2     Running   0          5m42s   10.1.52.165   vagrant   <none>           <none>
+```
   
 2. Обновить версию nginx в приложении до версии 1.20, сократив время обновления до минимума. Приложение должно быть доступно.
-3. Попытаться обновить nginx до версии 1.28, приложение должно оставаться доступным.
-4. Откатиться после неудачного обновления.
+```
+
+```
+   
+4. Попытаться обновить nginx до версии 1.28, приложение должно оставаться доступным.
+
+   
+6. Откатиться после неудачного обновления.
+
+   
 
 ## Дополнительные задания — со звёздочкой*
 
