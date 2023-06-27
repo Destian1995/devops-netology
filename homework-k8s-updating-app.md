@@ -149,7 +149,7 @@ nginx-multitool-6c98cfbb56-2g89h   2/2     Running   0          10m     10.1.52.
 nginx-multitool-6c98cfbb56-nntlb   2/2     Running   0          10m     10.1.52.174   node5     <none>           <none>
 nginx-multitool-6c98cfbb56-clm6j   2/2     Running   0          9m58s   10.1.52.175   node3     <none>           <none>
 nginx-multitool-6c98cfbb56-dkgb6   2/2     Running   0          10m     10.1.52.176   node4     <none>           <none>
-
+ 
 ```
    
 
