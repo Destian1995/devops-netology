@@ -85,12 +85,59 @@ spec:
 ```
 >И запускаем обновление. 
 ```
+vagrant@vagrant:~/k8s-update-app$ kubectl apply -f nginx-multitool.yaml
+deployment.apps/nginx-multitool configured
 
+Спустя время видим что поды падают в ошибку и пытаются пересоздаться.
+
+vagrant@vagrant:~/k8s-update-app$ kubectl get pods -o wide
+NAME                               READY   STATUS              RESTARTS   AGE   IP            NODE      NOMINATED NODE   READINESS GATES
+nginx-multitool-6c98cfbb56-2g26l   2/2     Running             0          54m   10.1.52.171   vagrant   <none>           <none>
+nginx-multitool-6f585b5848-8gkgh   0/2     ContainerCreating   0          32m   <none>        vagrant   <none>           <none>
+nginx-multitool-6f585b5848-lqn6l   0/2     ContainerCreating   0          32m   <none>        vagrant   <none>           <none>
+nginx-multitool-6f585b5848-9m8pr   0/2     ContainerCreating   0          31m   <none>        vagrant   <none>           <none>
+nginx-multitool-6f585b5848-tqn97   0/2     ContainerCreating   0          32m   <none>        vagrant   <none>           <none>
+nginx-multitool-6c98cfbb56-jz8n9   0/2     Terminating         0          54m   <none>        vagrant   <none>           <none>
+nginx-multitool-6f585b5848-k7hvq   0/2     ContainerCreating   0          32m   10.1.52.172   vagrant   <none>           <none>
+vagrant@vagrant:~/k8s-update-app$
 ```
    
 5. Откатиться после неудачного обновления.
 
 ```
+vagrant@vagrant:~/k8s-update-app$ kubectl rollout history deployment nginx-multitool view
+deployment.apps/nginx-multitool
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+3         <none>
+
+vagrant@vagrant:~/k8s-update-app$ kubectl rollout history deployment nginx-multitool --revision=2
+deployment.apps/nginx-multitool with revision #2
+Pod Template:
+  Labels:       app=nginx-multitool
+        pod-template-hash=6c98cfbb56
+  Containers:
+   nginx:
+    Image:      nginx:1.20
+    Port:       80/TCP
+    Host Port:  0/TCP
+    Environment:        <none>
+    Mounts:     <none>
+   multitool:
+    Image:      wbitt/network-multitool
+    Port:       8080/TCP
+    Host Port:  0/TCP
+    Environment:
+      HTTP_PORT:        8080
+      HTTPS_PORT:       11443
+    Mounts:     <none>
+  Volumes:      <none>
+
+После того как выяснили последнюю рабочую версию, откатываемся
+vagrant@vagrant:~/k8s-update-app$ kubectl rollout undo deployment nginx-multitool --to-revision=2
+deployment.apps/nginx-multitool rolled back
+
 
 ```
    
