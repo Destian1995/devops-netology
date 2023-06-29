@@ -52,7 +52,7 @@ curl: (6) Couldn't resolve host 'auth-db'
 curl: (6) Couldn't resolve host 'auth-db'
 curl: (6) Couldn't resolve host 'auth-db'
 ```
-* Вероятно из-за того что pod-ы в разных namespace, то это где-то не обозначено, поэтому pod-ы из web не могут достучаться до pod-a из data
+* Вероятно из-за того что pod-ы в разных namespace, то это не обозначено, поэтому pod-ы из web не могут достучаться до pod-a из data
 
 3. Исправить проблему, описать, что сделано.
 * Исправляем auth-db на auth-db.data через команду kubectl edit -n web deployments.apps web-consumer
