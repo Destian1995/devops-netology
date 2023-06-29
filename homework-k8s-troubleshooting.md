@@ -56,9 +56,9 @@ curl: (6) Couldn't resolve host 'auth-db'
 
 3. Исправить проблему, описать, что сделано.
 * Исправляем на auth-db.data через команду kubectl edit -n web deployments.apps web-consumer
-```
-![2023-06-29_095945](https://github.com/Destian1995/devops-netology/assets/106807250/011cd940-352f-49e2-8d06-f00c55ed7e8f)
+![2023-06-29_095945](https://github.com/Destian1995/devops-netology/assets/106807250/0dcb3e62-1b66-40db-9ab6-b5c3c0571f19)
 
+```
 vagrant@vagrant:~$ kubectl edit -n web deployments.apps web-consumer
 deployment.apps/web-consumer edited
 ```
