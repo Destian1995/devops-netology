@@ -27,7 +27,7 @@ deployment.apps/web-consumer created
 deployment.apps/auth-db created
 service/auth-db created
 ```
-* получаем ошибки
+* Проверяем логи и получаем ошибки
 ```
 vagrant@vagrant:~$ kubectl logs -n web web-consumer-577d47b97d-ff728
 curl: (6) Couldn't resolve host 'auth-db'
