@@ -55,7 +55,9 @@ curl: (6) Couldn't resolve host 'auth-db'
 * Вероятно из-за того что pod-ы в разных namespace, то это где-то не обозначено, поэтому pod-ы из web не могут достучаться до pod-a из data
 
 3. Исправить проблему, описать, что сделано.
-* Исправляем на auth-db.data через команду kubectl edit -n web deployments.apps web-consumer
+* Исправляем auth-db на auth-db.data через команду kubectl edit -n web deployments.apps web-consumer
+  
+Должно быть так:
 ![2023-06-29_095945](https://github.com/Destian1995/devops-netology/assets/106807250/0dcb3e62-1b66-40db-9ab6-b5c3c0571f19)
 
 ```
