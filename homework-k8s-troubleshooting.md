@@ -16,7 +16,7 @@ kubectl apply -f https://raw.githubusercontent.com/netology-code/kuber-homeworks
 ```
 2. Выявить проблему и описать.
 
-При установке получил ошибку что отсутствуют namespace, создаем их и повторяем запрос.
+* При установке получил ошибку что отсутствуют namespace, создаем их и повторяем запрос.
 ```
 vagrant@vagrant:~$  kubectl create namespace web
 namespace/web created
@@ -27,7 +27,7 @@ deployment.apps/web-consumer created
 deployment.apps/auth-db created
 service/auth-db created
 ```
-получаем ошибки
+* получаем ошибки
 ```
 vagrant@vagrant:~$ kubectl logs -n web web-consumer-577d47b97d-ff728
 curl: (6) Couldn't resolve host 'auth-db'
@@ -52,9 +52,10 @@ curl: (6) Couldn't resolve host 'auth-db'
 curl: (6) Couldn't resolve host 'auth-db'
 curl: (6) Couldn't resolve host 'auth-db'
 ```
-Вероятно из-за того что pod-ы в разных namespace, то это где-то не обозначено, поэтому pod-ы из web не могут достучаться до pod-a из data
+* Вероятно из-за того что pod-ы в разных namespace, то это где-то не обозначено, поэтому pod-ы из web не могут достучаться до pod-a из data
+
 3. Исправить проблему, описать, что сделано.
-Исправляем на auth-db.data через команду kubectl edit -n web deployments.apps web-consumer
+* Исправляем на auth-db.data через команду kubectl edit -n web deployments.apps web-consumer
 ```
 ![2023-06-29_095945](https://github.com/Destian1995/devops-netology/assets/106807250/011cd940-352f-49e2-8d06-f00c55ed7e8f)
 
@@ -62,7 +63,7 @@ vagrant@vagrant:~$ kubectl edit -n web deployments.apps web-consumer
 deployment.apps/web-consumer edited
 ```
 4. Продемонстрировать, что проблема решена
-После исправления трафик пошел
+* После исправления трафик пошел
 ```
 vagrant@vagrant:~$  kubectl logs -n web web-consumer-566f496484-9zkvp
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
