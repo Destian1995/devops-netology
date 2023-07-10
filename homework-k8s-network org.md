@@ -35,9 +35,9 @@ Resource Terraform для Yandex Cloud:
 
 Конфигурация:
 
-* [main.tf]()
-* [variables.tf]()
-* [versions.tf]()
+* [main.tf](https://github.com/Destian1995/terra-org.network/blob/main/main.tf)
+* [variables.tf](https://github.com/Destian1995/terra-org.network/blob/main/variables.tf)
+* [versions.tf](https://github.com/Destian1995/terra-org.network/blob/main/versions.tf)
 
 
 Проверяем валидность.
