@@ -60,18 +60,19 @@ Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-external_ip_address_nat = "51.250.68.231"
-external_ip_address_public = "84.201.128.132"
-internal_ip_address_private = "192.168.20.12"
+external_ip_address_nat = "84.201.156.14"
+external_ip_address_public = "130.193.36.188"
+internal_ip_address_private = "192.168.20.34"
 vagrant@vagrant:~/terra-org.network$
 ```
 Готово:
-![image](https://github.com/Destian1995/devops-netology/assets/106807250/4b5a6c67-a58b-479b-8697-1f74a897afcb)
+![image](https://github.com/Destian1995/devops-netology/assets/106807250/3a999a8c-03fd-4cee-8d91-424b06563855)
+
 
 
 Подключаемся
 ```
-vagrant@vagrant:~/terra-org.network$ ssh ubuntu@84.201.128.132
+vagrant@vagrant:~/terra-org.network$ ssh ubuntu@130.193.36.188
 Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-69-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
@@ -85,20 +86,42 @@ Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-69-generic x86_64)
 Проверяем доступ в сеть из public
 ```
 ubuntu@public-instance:~$ ping netology.ru
-PING netology.ru (188.114.99.224) 56(84) bytes of data.
-64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=1 ttl=55 time=52.6 ms
-64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=2 ttl=55 time=52.5 ms
-64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=3 ttl=55 time=52.6 ms
-64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=4 ttl=55 time=52.5 ms
-64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=5 ttl=55 time=52.5 ms
-64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=6 ttl=55 time=52.7 ms
-64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=7 ttl=55 time=52.7 ms
+PING netology.ru (188.114.98.224) 56(84) bytes of data.
+64 bytes from 188.114.98.224 (188.114.98.224): icmp_seq=1 ttl=55 time=59.4 ms
+64 bytes from 188.114.98.224 (188.114.98.224): icmp_seq=2 ttl=55 time=58.9 ms
+64 bytes from 188.114.98.224 (188.114.98.224): icmp_seq=3 ttl=55 time=58.9 ms
+64 bytes from 188.114.98.224 (188.114.98.224): icmp_seq=4 ttl=55 time=59.0 ms
+64 bytes from 188.114.98.224 (188.114.98.224): icmp_seq=5 ttl=55 time=59.0 ms
+64 bytes from 188.114.98.224 (188.114.98.224): icmp_seq=6 ttl=55 time=59.0 ms
 ^C
 --- netology.ru ping statistics ---
-7 packets transmitted, 7 received, 0% packet loss, time 6009ms
-rtt min/avg/max/mdev = 52.515/52.574/52.663/0.057 ms
+6 packets transmitted, 6 received, 0% packet loss, time 5007ms
+rtt min/avg/max/mdev = 58.896/59.024/59.358/0.154 ms
 ubuntu@public-instance:~$
 ```
+![image](https://github.com/Destian1995/devops-netology/assets/106807250/40bb3d93-1db2-47fb-96e2-c986ba88a588)
+
+
 Переключаемся в private предварительно пробросив ключик.
 ```
+vagrant@vagrant:~/terra-org.network$ scp /home/vagrant/.ssh/id_rsa* ubuntu@130.193.36.188:~/.ssh/
+id_rsa                                                                                100% 2602   121.1KB/s   00:00
+id_rsa.pub
 ```
+Проверяем доступ из private
+```
+ubuntu@private-instance:~$ ping netology.ru
+PING netology.ru (188.114.99.224) 56(84) bytes of data.
+64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=1 ttl=53 time=54.6 ms
+64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=2 ttl=53 time=53.1 ms
+64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=3 ttl=53 time=53.0 ms
+64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=4 ttl=53 time=53.4 ms
+64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=5 ttl=53 time=53.3 ms
+64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=6 ttl=53 time=53.3 ms
+^C
+--- netology.ru ping statistics ---
+6 packets transmitted, 6 received, 0% packet loss, time 5008ms
+rtt min/avg/max/mdev = 53.047/53.465/54.588/0.516 ms
+```
+![image](https://github.com/Destian1995/devops-netology/assets/106807250/4a2173ea-eaf1-4d9d-8466-0026e8ef1284)
+
