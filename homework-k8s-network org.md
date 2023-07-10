@@ -46,8 +46,24 @@ vagrant@vagrant:~/terra-org.network$ terraform validate
 Success! The configuration is valid.
 ```
 
-
+Разворачиваем
 ```
+vagrant@vagrant:~/terra-org.network$ terraform apply -auto-approve
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
+following symbols:
+  + create
+
+Terraform will perform the following actions:
+###
+Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+external_ip_address_nat = "51.250.68.231"
+external_ip_address_public = "84.201.128.132"
+internal_ip_address_private = "192.168.20.12"
+vagrant@vagrant:~/terra-org.network$
 ```
 
 
