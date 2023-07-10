@@ -102,11 +102,11 @@ ubuntu@public-instance:~$
 ![image](https://github.com/Destian1995/devops-netology/assets/106807250/40bb3d93-1db2-47fb-96e2-c986ba88a588)
 
 
-Переключаемся в private предварительно пробросив ключик.
+Переключаемся в private предварительно пробросив ключик с помощью scp.
 ```
 vagrant@vagrant:~/terra-org.network$ scp /home/vagrant/.ssh/id_rsa* ubuntu@130.193.36.188:~/.ssh/
 id_rsa                                                                                100% 2602   121.1KB/s   00:00
-id_rsa.pub
+id_rsa.pub                                                                            100%  569    27.3KB/s   00:00
 ```
 Проверяем доступ из private
 ```
