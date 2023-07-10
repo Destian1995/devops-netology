@@ -80,3 +80,25 @@ Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-69-generic x86_64)
 
   System information as of Mon Jul 10 06:39:37 AM UTC 2023
 ```
+
+
+Проверяем доступ в сеть из public
+```
+ubuntu@public-instance:~$ ping netology.ru
+PING netology.ru (188.114.99.224) 56(84) bytes of data.
+64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=1 ttl=55 time=52.6 ms
+64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=2 ttl=55 time=52.5 ms
+64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=3 ttl=55 time=52.6 ms
+64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=4 ttl=55 time=52.5 ms
+64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=5 ttl=55 time=52.5 ms
+64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=6 ttl=55 time=52.7 ms
+64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=7 ttl=55 time=52.7 ms
+^C
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 received, 0% packet loss, time 6009ms
+rtt min/avg/max/mdev = 52.515/52.574/52.663/0.057 ms
+ubuntu@public-instance:~$
+```
+Переключаемся в private предварительно пробросив ключик.
+```
+```
