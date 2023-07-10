@@ -118,6 +118,21 @@ id_rsa.pub                                                                      
 ```
 Проверяем доступ из private
 ```
+ubuntu@public-instance:~$ ssh ubuntu@192.168.20.34
+Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-69-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Mon Jul 10 08:19:31 AM UTC 2023
+
+  System load:  0.16455078125     Processes:             127
+  Usage of /:   50.7% of 7.79GB   Users logged in:       0
+  Memory usage: 11%               IPv4 address for eth0: 192.168.20.34
+  Swap usage:   0%
+```
+```
 ubuntu@private-instance:~$ ping netology.ru
 PING netology.ru (188.114.99.224) 56(84) bytes of data.
 64 bytes from 188.114.99.224 (188.114.99.224): icmp_seq=1 ttl=53 time=54.6 ms
