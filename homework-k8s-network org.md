@@ -66,7 +66,7 @@ internal_ip_address_private = "192.168.20.34"
 vagrant@vagrant:~/terra-org.network$
 ```
 Готово:
-![image](https://github.com/Destian1995/devops-netology/assets/106807250/3a999a8c-03fd-4cee-8d91-424b06563855)
+![image](https://github.com/Destian1995/devops-netology/assets/106807250/64bbaec9-db59-46b1-8552-46876f70e83c)
 
 
 
