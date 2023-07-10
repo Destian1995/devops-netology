@@ -81,7 +81,12 @@ Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-69-generic x86_64)
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/advantage
 
-  System information as of Mon Jul 10 06:39:37 AM UTC 2023
+  System information as of Mon Jul 10 08:25:12 AM UTC 2023
+
+  System load:  0.05126953125     Processes:             126
+  Usage of /:   50.0% of 7.79GB   Users logged in:       0
+  Memory usage: 11%               IPv4 address for eth0: 192.168.10.10
+  Swap usage:   0%
 ```
 
 
