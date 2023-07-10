@@ -66,7 +66,8 @@ internal_ip_address_private = "192.168.20.34"
 vagrant@vagrant:~/terra-org.network$
 ```
 Готово:
-![image](https://github.com/Destian1995/devops-netology/assets/106807250/64bbaec9-db59-46b1-8552-46876f70e83c)
+![image](https://github.com/Destian1995/devops-netology/assets/106807250/4e876031-b97f-41a2-9567-74fa01e2c506)
+
 
 
 
@@ -99,7 +100,8 @@ PING netology.ru (188.114.98.224) 56(84) bytes of data.
 rtt min/avg/max/mdev = 58.896/59.024/59.358/0.154 ms
 ubuntu@public-instance:~$
 ```
-![image](https://github.com/Destian1995/devops-netology/assets/106807250/40bb3d93-1db2-47fb-96e2-c986ba88a588)
+![image](https://github.com/Destian1995/devops-netology/assets/106807250/c8f58d53-d475-4c79-8d79-7f1b286157d4)
+
 
 
 Переключаемся в private предварительно пробросив ключик с помощью scp.
