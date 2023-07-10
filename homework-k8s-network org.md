@@ -65,8 +65,18 @@ external_ip_address_public = "84.201.128.132"
 internal_ip_address_private = "192.168.20.12"
 vagrant@vagrant:~/terra-org.network$
 ```
+Готово:
+![image](https://github.com/Destian1995/devops-netology/assets/106807250/4b5a6c67-a58b-479b-8697-1f74a897afcb)
 
 
-
+Подключаемся
 ```
+vagrant@vagrant:~/terra-org.network$ ssh ubuntu@84.201.128.132
+Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-69-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Mon Jul 10 06:39:37 AM UTC 2023
 ```
