@@ -148,3 +148,5 @@ rtt min/avg/max/mdev = 53.047/53.465/54.588/0.516 ms
 ```
 ![image](https://github.com/Destian1995/devops-netology/assets/106807250/4a2173ea-eaf1-4d9d-8466-0026e8ef1284)
 
+
+Все в порядке доступ в сеть есть из public и private
