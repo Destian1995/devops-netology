@@ -145,13 +145,16 @@
 ---
 
 
-1. [Репозиторий]() с конфиг файлами.
-Для автоматизации установки составил скрипт [main_install.sh]() 
+1. [Репозиторий](https://github.com/Destian1995/diplom_netology) с конфиг файлами.
+Для автоматизации установки составил скрипт [main_install.sh](https://github.com/Destian1995/diplom_netology/blob/main/main_install.sh) 
 Там идет поэтапная установка, полное описание всего процесса описано в файле README.md
 Время полной установки с учетом использования средств VPN составляет ~ 40 минут.
 2. Скрин из Terraform Cloud
 <>
-3. [Репозиторий ansible]()
+3. [Репозиторий ansible]() 
+```
+Кластер Kubernetes создается с помощью kubespray, вся конфигурация содержится в inventory файле, который генерируется с помощью [generate_inventory.sh](https://github.com/Destian1995/diplom_netology/blob/main/terraform/generate_inventory.sh).
+```
 4. [Репозиторий приложения]() и [Ссылка на docker image](https://hub.docker.com/r/destian1995/nginx-app)
 5. [Репозиторий Kubernetes]()
 6. [Ссылка на приложение]() и [ссылка на Grafana]()
