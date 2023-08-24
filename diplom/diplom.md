@@ -153,13 +153,18 @@
 <>
 3. Репозиторий с конфигурацией ansible, если был выбран способ создания Kubernetes кластера при помощи ansible.
    
-Кластер Kubernetes создается с помощью [kubespray](Репозиторий с конфигурацией ansible, если был выбран способ создания Kubernetes кластера при помощи ansible.), 
-конфигурация содержится в inventory файле, который создается с помощью [generate_inventory.sh](https://github.com/Destian1995/diplom_netology/blob/main/terraform/generate_inventory.sh).
+Кластер Kubernetes создается с помощью [kubespray](https://github.com/kubernetes-sigs/kubespray), 
+конфигурация содержится в [inventory]() файле, который создается с помощью [generate_inventory.sh](https://github.com/Destian1995/diplom_netology/blob/main/terraform/generate_inventory.sh).
 
 4. [Репозиторий приложения](https://github.com/Destian1995/yandex-diplom-devops) и [Ссылка на docker image](https://hub.docker.com/r/destian1995/nginx-app)
 5. Репозиторий с конфигурацией Kubernetes кластера.
    
-Terraform создает ВМ для кластера kubernetes и jenkins, генерируется inventory файл для kuberspray, ansible c помощью kuberspray поднимает kubernetes кластер. С помощью ansible с мастер-ноды копируется k8s config файл на локальную машину. С помощью ansible выполняется установка и настройка jenkins.
+Terraform создает сервера для кластера kubernetes и jenkins, генерируется inventory файл для kuberspray, ansible c помощью kuberspray поднимает kubernetes кластер. 
+С помощью ansible с мастер-ноды копируется k8s config файл на локальную машину. 
+С помощью ansible выполняется установка и настройка jenkins. Вся установка кластера поэтапно описана [здесь](https://github.com/Destian1995/diplom_netology)
 
-6. [Ссылка на приложение]() и [ссылка на Grafana]()
+6. [Ссылка на приложение]() 
+   [Cсылка на Grafana]()
+Логин: 
+Пароль: 
 7. Все репозитории размещены на github.
