@@ -144,6 +144,7 @@
 
 ---
 
+# Выполнение...
 
 1. [Репозиторий](https://github.com/Destian1995/diplom_netology) с конфиг файлами.
 Для автоматизации установки составил скрипт [main_install.sh](https://github.com/Destian1995/diplom_netology/blob/main/main_install.sh) 
