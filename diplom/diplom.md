@@ -164,7 +164,7 @@
 Terraform создает 3 сервера для кластера kubernetes и jenkins, генерируется inventory файл для kuberspray, ansible c помощью kuberspray поднимает kubernetes кластер. 
 С помощью ansible с мастер-ноды копируется k8s config файл на локальную машину. 
 С помощью ansible выполняется установка и настройка jenkins. 
-Вся установка кластера поэтапно описана [здесь](https://github.com/Destian1995/diplom_netology)
+Вся установка кластера с нуля поэтапно описана [здесь](https://github.com/Destian1995/diplom_netology)
 
 6.
 * [Ссылка на приложение]() 
