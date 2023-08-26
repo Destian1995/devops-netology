@@ -146,7 +146,7 @@
 
 # Выполнение...
 
-* - 1. [Репозиторий](https://github.com/Destian1995/diplom_netology) с конфиг файлами.
+1. [Репозиторий](https://github.com/Destian1995/diplom_netology) с конфиг файлами.
 Для автоматизации установки составил полноценный скрипт [main_install.sh](https://github.com/Destian1995/diplom_netology/blob/main/main_install.sh) 
 Там идет поэтапная установка с нуля, полное описание всего процесса описано в файле [README.md](https://github.com/Destian1995/diplom_netology/blob/main/README.md)
 Время полной установки с учетом использования средств VPN(низкая скорость сети) составляет ~ 40\50 минут.
@@ -157,28 +157,29 @@
 Если скрипт отработал с ошибками - запустите его еще раз(потому как любые проблемы(ssh, недоступность хостов или невозможность установки prometheus, связано с сетью)).
 Итак после нескольких попыток перезапуска одного и того же скрипта(без изменений) получаем:
 
+--
 
-* - 2. Скрин из Terraform Cloud
+2. Скрин из Terraform Cloud
 <>
-* - 3. Репозиторий с конфигурацией ansible, если был выбран способ создания Kubernetes кластера при помощи ansible.
+3. Репозиторий с конфигурацией ansible, если был выбран способ создания Kubernetes кластера при помощи ansible.
    
 Кластер Kubernetes создается с помощью [kubespray](https://github.com/kubernetes-sigs/kubespray), 
 конфигурация описана в [inventory]() файле, который создается с помощью [generate_inventory.sh](https://github.com/Destian1995/diplom_netology/blob/main/terraform/generate_inventory.sh).
 и помещается в kubespray/inventory/mycluster
 
-* - 4. [Репозиторий приложения](https://github.com/Destian1995/yandex-diplom-devops) и [Ссылка на docker image](https://hub.docker.com/r/destian1995/nginx-app)
-* - 5. Репозиторий с конфигурацией Kubernetes кластера.
+4. [Репозиторий приложения](https://github.com/Destian1995/yandex-diplom-devops) и [Ссылка на docker image](https://hub.docker.com/r/destian1995/nginx-app)
+5. Репозиторий с конфигурацией Kubernetes кластера.
    
 Terraform создает 3 сервера для кластера kubernetes и jenkins, генерируется inventory файл для kuberspray, ansible c помощью kuberspray поднимает kubernetes кластер. 
 С помощью ansible с мастер-ноды копируется k8s config файл на локальную машину. 
 С помощью ansible выполняется установка и настройка jenkins. 
 Вся установка кластера с нуля поэтапно описана [здесь](https://github.com/Destian1995/diplom_netology)
 
-* - 6.
+6.
 * [Ссылка на приложение]() 
 * [Cсылка на Grafana]()
 ```   
 Логин: 
 Пароль: 
 ```
-* - 7. Все репозитории размещены на github.
+7. Все репозитории размещены на github.
