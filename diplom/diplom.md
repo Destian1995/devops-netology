@@ -160,7 +160,7 @@
 3. Репозиторий с конфигурацией ansible, если был выбран способ создания Kubernetes кластера при помощи ansible.
    
 Кластер Kubernetes создается с помощью [kubespray](https://github.com/kubernetes-sigs/kubespray), 
-конфигурация выгружается в [inventory]() файле, который создается [generate_inventory.sh](https://github.com/Destian1995/diplom_netology/blob/main/terraform/generate_inventory.sh) файлом
+конфигурация выгружается в [inventory]() файл, который создается [generate_inventory.sh](https://github.com/Destian1995/diplom_netology/blob/main/terraform/generate_inventory.sh) скриптом
 и помещается в kubespray/inventory/mycluster
 
 4. [Репозиторий приложения](https://github.com/Destian1995/yandex-diplom-devops) и [Ссылка на docker image](https://hub.docker.com/r/destian1995/nginx-app)
