@@ -146,6 +146,8 @@
 
 # Выполнение...
 
+[Демонстрация создания всех ресурсов с нуля]()
+
 1. [Репозиторий](https://github.com/Destian1995/diplom_netology) с конфиг файлами.
 Для автоматизации установки составил полноценный скрипт [main_install.sh](https://github.com/Destian1995/diplom_netology/blob/main/main_install.sh) 
 Там идет поэтапная установка с нуля, полное описание всего процесса описано в файле [README.md](https://github.com/Destian1995/diplom_netology/blob/main/README.md)
