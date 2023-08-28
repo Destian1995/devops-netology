@@ -176,6 +176,6 @@ Terraform создает 3 сервера для кластера kubernetes и 
 * [Cсылка на Grafana]()
 ```   
 Логин: admin 
-Пароль: Destian1995
+Пароль: prom-operator
 ```
 7. Все репозитории размещены на github.
