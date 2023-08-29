@@ -148,7 +148,7 @@
 
 [Демонстрация создания всех ресурсов с нуля]()
 
-1. [Репозиторий](https://github.com/Destian1995/diplom_netology) с конфиг файлами.
+1. [Репозиторий](https://github.com/Destian1995/diplom_netology) со всеми файлами необходимыми для развертывания полноценной инфраструктуры.
 Для автоматизации установки составил полноценный скрипт [main_install.sh](https://github.com/Destian1995/diplom_netology/blob/main/main_install.sh) 
 Там идет поэтапная установка с нуля, полное описание всего процесса описано в файле [README.md](https://github.com/Destian1995/diplom_netology/blob/main/README.md)
 Время полной установки с учетом использования средств VPN(низкая скорость сети) составляет ~ 40\50 минут.
