@@ -158,11 +158,13 @@
 --
 
 2. Скрин из Terraform Cloud
-<>
+
+![2023-08-30_211404](https://github.com/Destian1995/devops-netology/assets/106807250/62674f71-9e02-44a3-be81-6744b36bbf18)
+
 3. Репозиторий с конфигурацией ansible, если был выбран способ создания Kubernetes кластера при помощи ansible.
    
 Кластер Kubernetes создается с помощью [kubespray](https://github.com/kubernetes-sigs/kubespray), 
-конфигурация выгружается в [inventory]() файл, который создается [generate_inventory.sh](https://github.com/Destian1995/diplom_netology/blob/main/terraform/generate_inventory.sh) скриптом
+конфигурация выгружается в [inventory](https://github.com/Destian1995/diplom_netology/blob/main/hosts.ini) файл, который создается [generate_inventory.sh](https://github.com/Destian1995/diplom_netology/blob/main/terraform/generate_inventory.sh) скриптом
 и помещается в kubespray/inventory/mycluster
 
 4. [Репозиторий приложения](https://github.com/Destian1995/yandex-diplom-devops) и [Ссылка на docker image](https://hub.docker.com/r/destian1995/nginx-app)
@@ -174,8 +176,8 @@ Terraform создает 3 сервера для кластера kubernetes и 
 Вся установка кластера с нуля поэтапно описана [здесь](https://github.com/Destian1995/diplom_netology/blob/main/README.md)
 
 6.
-* [Ссылка на приложение]() 
-* [Cсылка на Grafana]()
+* [Ссылка на приложение](84.252.128.123:30080) 
+* [Cсылка на Grafana](84.252.128.123:30030)
 ```   
 Логин: admin 
 Пароль: prom-operator
