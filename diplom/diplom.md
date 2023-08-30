@@ -169,7 +169,7 @@
 4. [Репозиторий приложения](https://github.com/Destian1995/yandex-diplom-devops) и [Ссылка на docker image](https://hub.docker.com/r/destian1995/nginx-app)
 5. Репозиторий с конфигурацией Kubernetes кластера.
    
-Terraform создает 3 сервера для кластера kubernetes и jenkins, генерируется inventory файл для kuberspray, ansible c помощью kuberspray поднимает kubernetes кластер. 
+Terraform создает 3 сервера для кластера kubernetes и jenkins, генерируется [inventory](https://github.com/Destian1995/diplom_netology/blob/main/hosts.ini) файл для kuberspray, ansible c помощью [kubespray](https://github.com/kubernetes-sigs/kubespray) поднимает kubernetes кластер. 
 С помощью ansible с мастер-ноды копируется k8s config файл на локальную машину. 
 С помощью ansible выполняется установка и настройка jenkins. 
 Вся установка кластера с нуля поэтапно описана [здесь](https://github.com/Destian1995/diplom_netology/blob/main/README.md)
